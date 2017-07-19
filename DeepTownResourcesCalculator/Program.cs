@@ -1,14 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Humanizer;
 
 namespace DeepTownResourcesCalculator
 {
-    class Program
+    internal static class Program
     {
+        [SuppressMessage("ReSharper", "UnusedParameter.Local")]
         static void Main(string[] args)
         {
 
@@ -16,41 +15,7 @@ namespace DeepTownResourcesCalculator
 
             while (quit == false)
             {
-                Console.WriteLine();
-                Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.WriteLine("Make a Selection:");
-                Console.ForegroundColor = ConsoleColor.White;
-                Console.WriteLine("=================");
-                Console.WriteLine();
-
-                Console.ForegroundColor = ConsoleColor.Cyan;
-                Console.Write("\t[1]\t");
-                Console.ForegroundColor = ConsoleColor.White;
-                Console.Write("Longest Time To Craft Required Subcomponents\r\n");
-                Console.WriteLine();
-
-                Console.ForegroundColor = ConsoleColor.Cyan;
-                Console.Write("\t[2]\t");
-                Console.ForegroundColor = ConsoleColor.White;
-                Console.Write("Most Expensive Subcomponents\r\n");
-                Console.WriteLine();
-
-                Console.ForegroundColor = ConsoleColor.Cyan;
-                Console.Write("\t[3]\t");
-                Console.ForegroundColor = ConsoleColor.White;
-                Console.Write("Highest Profit Margins\r\n");
-                Console.WriteLine();
-
-                Console.ForegroundColor = ConsoleColor.Cyan;
-                Console.Write("\t[4]\t");
-                Console.ForegroundColor = ConsoleColor.White;
-                Console.Write("Best Cost-to-Value Ratio\r\n");
-                Console.WriteLine();
-
-                Console.ForegroundColor = ConsoleColor.Cyan;
-                Console.Write("\t[Q]\t");
-                Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.Write("Quit / Exit\r\n");
+                PrintMenuChoices();
 
                 Console.WriteLine();
                 Console.ForegroundColor = ConsoleColor.Cyan;
@@ -70,7 +35,7 @@ namespace DeepTownResourcesCalculator
 
                     case ConsoleKey.D1:
                     case ConsoleKey.NumPad1:
-                        LongestTimeToCraft();
+                        HighestTotalCraftingTimeRequired();
                         PressAnyKeyToContinue();
                         break;
 
@@ -106,7 +71,46 @@ namespace DeepTownResourcesCalculator
             }
         }
 
-        private static void PressAnyKeyToContinue()
+        static void PrintMenuChoices()
+        {
+            Console.WriteLine();
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine("Make a Selection:");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine("=================");
+            Console.WriteLine();
+
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.Write("\t[1]\t");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.Write("Longest Time To Craft Required Subcomponents\r\n");
+            Console.WriteLine();
+
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.Write("\t[2]\t");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.Write("Most Expensive Subcomponents\r\n");
+            Console.WriteLine();
+
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.Write("\t[3]\t");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.Write("Highest Profit Margins\r\n");
+            Console.WriteLine();
+
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.Write("\t[4]\t");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.Write("Best Cost-to-Value Ratio\r\n");
+            Console.WriteLine();
+
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.Write("\t[Q]\t");
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.Write("Quit / Exit\r\n");
+        }
+
+        static void PressAnyKeyToContinue()
         {
             Console.WriteLine();
             Console.ForegroundColor = ConsoleColor.Gray;
@@ -116,12 +120,13 @@ namespace DeepTownResourcesCalculator
             Console.WriteLine();
         }
 
-        static void LongestTimeToCraft()
+
+        static void HighestTotalCraftingTimeRequired()
         {
             Console.Clear();
             Console.WriteLine();
 
-            var mats = BaseResources.AllMaterialsCollection;
+            var mats = Resources.AllMaterialsCollection;
 
             var longestToCraft = mats.OrderByDescending(m => m.SumOfPartsToCraft).Take(25);
 
@@ -141,7 +146,7 @@ namespace DeepTownResourcesCalculator
             Console.Clear();
             Console.WriteLine();
 
-            var mats = BaseResources.AllMaterialsCollection;
+            var mats = Resources.AllMaterialsCollection;
             var highestPartsCost = mats.OrderByDescending(m => m.SumOfParts).Take(15);
 
             int x = 1;
@@ -160,7 +165,7 @@ namespace DeepTownResourcesCalculator
             Console.Clear();
             Console.WriteLine();
 
-            var mats = BaseResources.AllMaterialsCollection;
+            var mats = Resources.AllMaterialsCollection;
             var mostProfit = mats.OrderByDescending(m => m.CoinValue - m.SumOfParts).Take(25);
 
             int x = 1;
@@ -182,7 +187,7 @@ namespace DeepTownResourcesCalculator
             Console.Clear();
             Console.WriteLine();
 
-            var mats = BaseResources.AllMaterialsCollection;
+            var mats = Resources.AllMaterialsCollection;
             var mostProfit = mats.OrderByDescending(m => m.ProfitToTimeRequiredRatio).Take(25);
 
             int x = 1;
