@@ -44,10 +44,10 @@ namespace DeepTownResourcesCalculator
         static readonly MaterialBase Emerald = new MaterialBase { Name = "Emerald", CoinValue = 12, TimeToCraft = BaseMineralWithMineRate };
         static readonly MaterialBase Ruby = new MaterialBase { Name = "Ruby", CoinValue = 15, TimeToCraft = BaseMineralWithMineRate };
 
-        static readonly MaterialBase Topaz = new MaterialBase { Name = "Topaz", CoinValue = 14, TimeToCraft = GetBaseRateFromMaxMinePercent(0.105) };         // TODO: Verify Mining Rate
-        static readonly MaterialBase Sapphire = new MaterialBase { Name = "Sapphire", CoinValue = 16, TimeToCraft = GetBaseRateFromMaxMinePercent(0.30) };    // TODO: Verify Mining Rate
-        static readonly MaterialBase Amethyst = new MaterialBase { Name = "Amethyst", CoinValue = 18, TimeToCraft = GetBaseRateFromMaxMinePercent(0.30) };    // TODO: Verify Mining Rate
-        static readonly MaterialBase Diamond = new MaterialBase { Name = "Diamond", CoinValue = 18, TimeToCraft = GetBaseRateFromMaxMinePercent(0.18) };      // TODO: Verify Mining Rate
+        static readonly MaterialBase Topaz = new MaterialBase { Name = "Topaz", CoinValue = 14, TimeToCraft = GetBaseRateFromMaxMinePercent(0.30) };
+        static readonly MaterialBase Sapphire = new MaterialBase { Name = "Sapphire", CoinValue = 16, TimeToCraft = GetBaseRateFromMaxMinePercent(0.18) };
+        static readonly MaterialBase Amethyst = new MaterialBase { Name = "Amethyst", CoinValue = 18, TimeToCraft = GetBaseRateFromMaxMinePercent(0.37) };
+        static readonly MaterialBase Diamond = new MaterialBase { Name = "Diamond", CoinValue = 18, TimeToCraft = GetBaseRateFromMaxMinePercent(0.18) };
         #endregion
 
         #region Chemical Mine Resources
@@ -65,8 +65,8 @@ namespace DeepTownResourcesCalculator
         // TODO: Figure out what a good rate will be for Water... water collector is 5-7RPM, but need to factor in frequency of rain...
         static readonly MaterialBase Water = new MaterialBase { Name = "Water", CoinValue = 5, TimeToCraft = TimeSpan.Zero };
 
-        /// Assuming a Level 3 Oil Pump rate
-        static readonly MaterialBase Oil = new MaterialBase { Name = "Oil", CoinValue = 21, TimeToCraft = TimeSpan.FromMinutes(3) };
+        /// Assuming a Level 3 Oil Pump rate (0.3 RPM)
+        static readonly MaterialBase Oil = new MaterialBase { Name = "Oil", CoinValue = 21, TimeToCraft = TimeSpan.FromMinutes(1D / 0.3D) };
         #endregion
 
         #region Greenhouse Seeds

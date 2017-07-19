@@ -53,7 +53,9 @@ namespace DeepTownResourcesCalculator
         }
 
 
-        public double TotalSumOfParts => SumOfParts + CoinValue;
+        public double TotalSumOfParts => Requires.Any()
+                                             ? SumOfParts + CoinValue
+                                             : CoinValue;
 
 
 
@@ -69,7 +71,7 @@ namespace DeepTownResourcesCalculator
 
                     _cachedSumToPartsToCraft = Requires.Any() && SumOfPartsInSeconds > 0
                                                    ? TimeSpan.FromSeconds(Requires.Sum(d => d.Key.TotalTimeToCraft.TotalSeconds * d.Value))
-                                                   : TimeToCraft;
+                                                   : TimeSpan.Zero;
 
                     _isSumOfPartsToCraftCached = true;
                 }
@@ -84,7 +86,7 @@ namespace DeepTownResourcesCalculator
         public TimeSpan TotalTimeToCraft => SumOfPartsToCraft.Add(TimeToCraft);
 
 
-        double SumOfPartsInSeconds => Requires.Sum(d => d.Key.SumOfPartsToCraft.TotalSeconds * d.Value);
+        double SumOfPartsInSeconds => TimeSpan.FromMilliseconds(Requires.Sum(d => d.Key.TotalTimeToCraft.TotalMilliseconds * d.Value)).TotalSeconds;
 
 
         public double ProfitToTimeRequiredRatio => (CoinValue - SumOfParts) / TotalTimeToCraft.TotalMinutes;

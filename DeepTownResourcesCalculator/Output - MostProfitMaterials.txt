@@ -1,4 +1,6 @@
-Most Profit(?) Items:
+Most Profit? Items:
+
+(Coin Value - Sum of individual component value)
 
 1:      Plastic                  206,185
 2:      Solar panel              57,450
@@ -25,3 +27,43 @@ Most Profit(?) Items:
 23:     Glass                    250
 24:     Amber bracelet           225
 25:     Polished diamond         210
+26:     Gold bar                 200
+27:     Wood                     186
+28:     Polished ruby            175
+29:     Silver bar               165
+30:     Steel bar                160
+31:     Polished sapphire        150
+32:     Battery                  131
+33:     Polished topaz           130
+34:     Polished emerald         100
+35:     Amber insulation         73
+36:     Polished amber           50
+37:     Aluminum bottle          43
+38:     Iron bar                 25
+39:     Aluminum bar             25
+40:     Copper bar               15
+41:     Graphite                 10
+42:     Copper nails             6
+43:     Copper wire              3
+
+44:     Coal                     0
+45:     Amber                    0
+46:     Copper ore               0
+47:     Iron ore                 0
+48:     Aluminum ore             0
+49:     Silver ore               0
+50:     Gold ore                 0
+51:     Platinum                 0
+52:     Emerald                  0
+53:     Ruby                     0
+54:     Topaz                    0
+55:     Sapphire                 0
+56:     Amethyst                 0
+57:     Diamond                  0
+58:     Sulfur                   0
+59:     Sodium                   0
+60:     Silicon                  0
+61:     Water                    0
+62:     Oil                      0
+63:     Polished amethyst        0
+64:     Amber charger            0

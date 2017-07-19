@@ -2,6 +2,8 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Humanizer;
+using Humanizer.Configuration;
+using Humanizer.DateTimeHumanizeStrategy;
 
 namespace DeepTownResourcesCalculator
 {
@@ -10,7 +12,6 @@ namespace DeepTownResourcesCalculator
         [SuppressMessage("ReSharper", "UnusedParameter.Local")]
         static void Main(string[] args)
         {
-
             bool quit = false;
 
             while (quit == false)
@@ -54,6 +55,18 @@ namespace DeepTownResourcesCalculator
                     case ConsoleKey.D4:
                     case ConsoleKey.NumPad4:
                         HighestProfitToTimeRatio();
+                        PressAnyKeyToContinue();
+                        break;
+
+                    case ConsoleKey.D5:
+                    case ConsoleKey.NumPad5:
+                        IndividualTimeRequiredAtMaxRequest();
+                        PressAnyKeyToContinue();
+                        break;
+
+                    case ConsoleKey.D6:
+                    case ConsoleKey.NumPad6:
+                        IndividualValueAtMaxRequest();
                         PressAnyKeyToContinue();
                         break;
 
@@ -104,6 +117,21 @@ namespace DeepTownResourcesCalculator
             Console.Write("Best Cost-to-Value Ratio\r\n");
             Console.WriteLine();
 
+
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.Write("\t[5]\t");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.Write("Individual Time Required @ Max Request (5,000)\r\n");
+            Console.WriteLine();
+
+
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.Write("\t[6]\t");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.Write("Resource Value @ Max Request (5,000)\r\n");
+            Console.WriteLine();
+
+
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.Write("\t[Q]\t");
             Console.ForegroundColor = ConsoleColor.Yellow;
@@ -128,7 +156,7 @@ namespace DeepTownResourcesCalculator
 
             var mats = Resources.AllMaterialsCollection;
 
-            var longestToCraft = mats.OrderByDescending(m => m.SumOfPartsToCraft).Take(25);
+            var longestToCraft = mats.OrderByDescending(m => m.TotalTimeToCraft);
 
             int x = 1;
             Console.ForegroundColor = ConsoleColor.Yellow;
@@ -136,7 +164,7 @@ namespace DeepTownResourcesCalculator
             Console.ForegroundColor = ConsoleColor.White;
             foreach (var m in longestToCraft)
             {
-                Console.WriteLine($"{x}:\t{m.Name.Humanize().PadRight(25)}{m.SumOfPartsToCraft.Humanize(precision: 5, maxUnit: Humanizer.Localisation.TimeUnit.Year, minUnit: Humanizer.Localisation.TimeUnit.Second)}");
+                Console.WriteLine($"{x}:\t{m.Name.Humanize().PadRight(25)}{m.TotalTimeToCraft.Humanize(5, maxUnit: Humanizer.Localisation.TimeUnit.Day, minUnit: Humanizer.Localisation.TimeUnit.Second)}");
                 x++;
             }
         }
@@ -147,7 +175,7 @@ namespace DeepTownResourcesCalculator
             Console.WriteLine();
 
             var mats = Resources.AllMaterialsCollection;
-            var highestPartsCost = mats.OrderByDescending(m => m.SumOfParts).Take(15);
+            var highestPartsCost = mats.OrderByDescending(m => m.SumOfParts);
 
             int x = 1;
             Console.ForegroundColor = ConsoleColor.Yellow;
@@ -166,7 +194,7 @@ namespace DeepTownResourcesCalculator
             Console.WriteLine();
 
             var mats = Resources.AllMaterialsCollection;
-            var mostProfit = mats.OrderByDescending(m => m.CoinValue - m.SumOfParts).Take(25);
+            var mostProfit = mats.OrderByDescending(m => m.CoinValue - m.SumOfParts);
 
             int x = 1;
             Console.WriteLine();
@@ -188,7 +216,7 @@ namespace DeepTownResourcesCalculator
             Console.WriteLine();
 
             var mats = Resources.AllMaterialsCollection;
-            var mostProfit = mats.OrderByDescending(m => m.ProfitToTimeRequiredRatio).Take(25);
+            var mostProfit = mats.OrderByDescending(m => m.ProfitToTimeRequiredRatio);
 
             int x = 1;
             Console.WriteLine();
@@ -208,6 +236,59 @@ namespace DeepTownResourcesCalculator
                 x++;
             }
         }
+
+        /// <summary>
+        ///     How much time it would take to produce 5,000 of each material (not including sub-compontent crafting time)
+        /// </summary>
+        static void IndividualTimeRequiredAtMaxRequest()
+        {
+            Console.Clear();
+            Console.WriteLine();
+
+            var mats = Resources.AllMaterialsCollection;
+            var mostProfit = mats.OrderByDescending(m => m.TimeToCraft.TotalSeconds * 5000);
+
+            int x = 1;
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine("   Time to Produce 5,000 of each resource:");
+            Console.ForegroundColor = ConsoleColor.Gray;
+            Console.WriteLine("     (does not include subcomponents)");
+            Console.ForegroundColor = ConsoleColor.White;
+            foreach (var m in mostProfit)
+            {
+                Console.WriteLine($"{x}:\t{m.Name.Humanize().PadRight(25)}{TimeSpan.FromSeconds(m.TimeToCraft.TotalSeconds * 5000).Humanize(5, maxUnit: Humanizer.Localisation.TimeUnit.Day, minUnit: Humanizer.Localisation.TimeUnit.Minute)}");
+                x++;
+            }
+        }
+
+        /// <summary>
+        ///     The total coin value for 5,000 of each material (not including sub-components) 
+        /// </summary>
+        static void IndividualValueAtMaxRequest()
+        {
+            Console.Clear();
+            Console.WriteLine();
+
+            var mats = Resources.AllMaterialsCollection;
+            var mostProfit = mats.OrderByDescending(m => m.CoinValue * 5000);
+
+            int x = 1;
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine("   Coin value for 5,000 of each resource:");
+            Console.ForegroundColor = ConsoleColor.Gray;
+            Console.WriteLine("     (does not include subcomponents)");
+            Console.ForegroundColor = ConsoleColor.White;
+            foreach (var m in mostProfit)
+            {
+                Console.WriteLine($"{x}:\t{m.Name.Humanize().PadRight(25)}{(m.CoinValue * 5000).ToString("N0").PadLeft(14)}");
+                x++;
+            }
+        }
+
 
     }
 }
