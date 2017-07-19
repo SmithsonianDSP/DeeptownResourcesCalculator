@@ -1,0 +1,17 @@
+Highest Parts Cost Sum:
+
+1:      Plastic                  13,815
+2:      Solar panel              11,550
+3:      Accumulator              4,000
+4:      Motherboard              2,150
+5:      Solid propellant         1,900
+6:      Refined oil              1,435
+7:      Ethanol                  1,288
+8:      Liana                    1,100
+9:      Grapes                   638
+10:     Circuit                  600
+11:     Rubber                   550
+12:     Diamond cutter           550
+13:     Sulfuric acid            405
+14:     Polished amethyst        260
+15:     Clean water              205

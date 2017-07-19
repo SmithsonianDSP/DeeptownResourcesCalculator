@@ -1,0 +1,27 @@
+Most Profit(?) Items:
+
+1:      Plastic                  206,185
+2:      Solar panel              57,450
+3:      Solid propellant         25,100
+4:      Refined oil              15,065
+5:      Motherboard              14,850
+6:      Accumulator              5,000
+7:      Diamond cutter           4,450
+8:      Rubber                   3,450
+9:      Sulfuric acid            3,095
+10:     Ethanol                  2,913
+11:     Steel plate              1,700
+12:     Circuit                  1,470
+13:     Clean water              995
+14:     Grapes                   863
+15:     Insulated wire           696
+16:     Oxygen                   695
+17:     Liana                    600
+18:     Lab flask                600
+19:     Lamp                     590
+20:     Green laser              343
+21:     Emerald ring             340
+22:     Hydrogen                 298
+23:     Glass                    250
+24:     Amber bracelet           225
+25:     Polished diamond         210

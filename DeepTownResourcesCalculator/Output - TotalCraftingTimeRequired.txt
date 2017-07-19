@@ -1,0 +1,27 @@
+Top Crafting Time Required For Subcomponents:
+
+1:      Plastic                  1 day, 1 hour, 21 minutes, 54 seconds
+2:      Solar panel              8 hours, 55 minutes
+3:      Refined oil              4 hours, 5 minutes
+4:      Motherboard              3 hours, 54 minutes, 55 seconds
+5:      Accumulator              2 hours, 40 minutes
+6:      Solid propellant         2 hours, 23 minutes, 22 seconds
+7:      Circuit                  1 hour, 10 minutes, 46 seconds
+8:      Ethanol                  1 hour, 40 seconds
+9:      Diamond cutter           41 minutes, 30 seconds
+10:     Liana                    30 minutes
+11:     Rubber                   30 minutes
+12:     Sulfuric acid            28 minutes
+13:     Oxygen                   20 minutes
+14:     Lamp                     19 minutes, 42 seconds
+15:     Steel plate              18 minutes, 9 seconds
+16:     Grapes                   15 minutes
+17:     Clean water              10 minutes
+18:     Hydrogen                 10 minutes
+19:     Lab flask                9 minutes
+20:     Glass                    8 minutes
+21:     Battery                  6 minutes, 6 seconds
+22:     Polished topaz           5 minutes, 36 seconds
+23:     Green laser              5 minutes, 34 seconds
+24:     Polished diamond         3 minutes, 16 seconds
+25:     Amber bracelet           3 minutes, 9 seconds

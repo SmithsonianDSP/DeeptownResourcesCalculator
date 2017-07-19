@@ -1,0 +1,30 @@
+Best Profit to Time Required Materials:
+
+	CPMSC == Coins Per Minute Spent Crafting
+	 (includes time spent on subcomponents)
+
+1:      Solid propellant          153.63 CPMSC
+2:      Plastic                   132.86 CPMSC
+3:      Gold bar                  125.93 CPMSC
+4:      Insulated wire            120.68 CPMSC
+5:      Polished ruby             110.19 CPMSC
+6:      Solar panel               107.18 CPMSC
+7:      Diamond cutter            105.95 CPMSC
+8:      Polished emerald           91.90 CPMSC
+9:      Steel plate                84.32 CPMSC
+10:     Silver bar                 79.73 CPMSC
+11:     Rubber                     76.67 CPMSC
+12:     Aluminum bottle            63.52 CPMSC
+13:     Green laser                60.76 CPMSC
+14:     Lab flask                  60.00 CPMSC
+15:     Motherboard                56.05 CPMSC
+16:     Copper nails               55.14 CPMSC
+17:     Refined oil                54.78 CPMSC
+18:     Sulfuric acid              53.36 CPMSC
+19:     Polished sapphire          50.66 CPMSC
+20:     Clean water                49.75 CPMSC
+21:     Polished diamond           49.20 CPMSC
+22:     Polished amber             45.95 CPMSC
+23:     Emerald ring               44.29 CPMSC
+24:     Steel bar                  44.05 CPMSC
+25:     Amber bracelet             43.62 CPMSC
