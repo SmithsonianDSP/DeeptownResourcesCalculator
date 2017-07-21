@@ -1,8 +1,7 @@
 ## Highest Subcomponent Values:
 
-- - -
 
-|   	|            	| 	|
+| **#**  	| **Resource**   	| **Value**	|
 |----	|-------------------	|--------	|
 | 1  	| Plastic           	| 13,815 	|
 | 2  	| Solar panel       	| 11,550 	|
