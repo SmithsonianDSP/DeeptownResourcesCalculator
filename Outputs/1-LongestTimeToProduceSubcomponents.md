@@ -57,3 +57,14 @@
 | 53 	| Copper wire       	| 11 seconds                      	|
 | 54 	| Amethyst          	| 9 seconds                       	|
 | 55 	| Amber charger     	| 8 seconds                       	|
+| 56	| Silver ore            | 6 seconds                       	|
+| 57	| Charcoal              | 5 seconds                       	|
+| 58	| Copper nails          | 4 seconds                       	|
+| 59	| Coal                  | 3 seconds                       	|
+| 60	| Amber                 | 3 seconds                       	|
+| 61	| Copper ore            | 3 seconds                       	|
+| 62	| Aluminum ore          | 3 seconds                       	|
+| 63	| Gold ore              | 3 seconds                       	|
+| 64	| Emerald               | 3 seconds                       	|
+| 65	| Ruby                  | 3 seconds                       	|
+

@@ -54,12 +54,14 @@
 
 ### **Zero Cost (all profit)**:
 
-| | | | | |
-|---------|----------|------------|-------|--------------|
-| Silicon | Sodium   | Sulfur     | Oil   | Amethyst     |
-| Diamond | Sapphire | Ruby       | Topaz | Aluminum Ore |
-| Emerald | Gold Ore | Silver Ore | Water |              |
-| Amber   | Iron Ore | Copper Ore | Coal  |              |
+|             |            |            |              |              |
+|-------------|------------|------------|--------------|--------------|
+| Silicon     | Sodium     | Sulfur     | Oil          | Amethyst     |
+| Diamond     | Sapphire   | Ruby       | Topaz        | Emerald      |
+| Coal        | Amber      | Copper Ore | Iron Ore     | Aluminum Ore | 
+| Silver Ore  | Gold Ore   |            |              | Water        |
+
+- - - 
 
 ### **Zero (or negative) Values**:
 

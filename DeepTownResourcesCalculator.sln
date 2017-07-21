@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26430.15
+VisualStudioVersion = 15.0.26403.7
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeepTownResourcesCalculator", "DeepTownResourcesCalculator\DeepTownResourcesCalculator.csproj", "{5B096E28-536E-4DBC-B127-AEF466B2524B}"
 EndProject
@@ -13,11 +13,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ReadMe", "ReadMe", "{963F27
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Outputs", "Outputs", "{7CC7CE8B-25D7-40DB-BEF2-F709A4725A88}"
 	ProjectSection(SolutionItems) = preProject
+		Outputs\1-LongestTimeToProduceSubcomponents.md = Outputs\1-LongestTimeToProduceSubcomponents.md
 		Outputs\1-LongestTimeToProduceSubcomponents.txt = Outputs\1-LongestTimeToProduceSubcomponents.txt
+		Outputs\2-MostExpensiveSubcomponts.md = Outputs\2-MostExpensiveSubcomponts.md
 		Outputs\2-MostExpensiveSubcomponts.txt = Outputs\2-MostExpensiveSubcomponts.txt
+		Outputs\3-HighestProfitMargins.md = Outputs\3-HighestProfitMargins.md
 		Outputs\3-HighestProfitMargins.txt = Outputs\3-HighestProfitMargins.txt
+		Outputs\4-TimeToValueRatio.md = Outputs\4-TimeToValueRatio.md
 		Outputs\4-TimeToValueRatio.txt = Outputs\4-TimeToValueRatio.txt
+		Outputs\5-TimeRequiredAtMaxRequest.md = Outputs\5-TimeRequiredAtMaxRequest.md
 		Outputs\5-TimeRequiredAtMaxRequest.txt = Outputs\5-TimeRequiredAtMaxRequest.txt
+		Outputs\6-ValueAtMaxRequest.md = Outputs\6-ValueAtMaxRequest.md
 		Outputs\6-ValueAtMaxRequest.txt = Outputs\6-ValueAtMaxRequest.txt
 	EndProjectSection
 EndProject

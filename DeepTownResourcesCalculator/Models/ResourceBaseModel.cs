@@ -59,10 +59,12 @@ namespace DeepTownResourcesCalculator
 
 
         #region Calculated Fields and Properties
-
+        // These are all things that are dependant upon the values set above
 
         #region Calculation Cache Backing
 
+        // We cache the results of this calculation because they won't change and so we aren't doing it multiple times whenever
+        // we want to look at this value.
         double _cachedSumOfSubcomponentValues;
 
         bool _isSumOfSubcomponentValuesCached;
@@ -70,9 +72,8 @@ namespace DeepTownResourcesCalculator
         #endregion
 
         /// <summary>
-        ///     This is the sum face-value of all of a material's required subcomponents. If a material does NOT have any
-        ///     subcomponents
-        ///     (e.g., coal, copper ore, etc.), then this will be the material's own face value.
+        ///     This is the sum value of all of a material's required subcomponents. If a material does NOT have any
+        ///     subcomponents (e.g., coal, copper ore, etc.), then this will be the material's own face value.
         /// </summary>
         /// <example>
         ///     For <see cref="Resources.Coal" />, this will be 1, as it does not have any subcomponents.
@@ -85,7 +86,7 @@ namespace DeepTownResourcesCalculator
             {
                 if (!_isSumOfSubcomponentValuesCached)
                 {
-                    _cachedSumOfSubcomponentValues = Requires.Any() && Requires.Sum(d => d.Key.SumOfSubcomponentValues * d.Value) > 0
+                    _cachedSumOfSubcomponentValues = Requires.Any(d => d.Key.SumOfSubcomponentValues > 0)
                                                          ? Requires.Sum(d => d.Key.SumOfSubcomponentValues * d.Value)
                                                          : CoinValue;
 
@@ -97,14 +98,16 @@ namespace DeepTownResourcesCalculator
 
         /// <summary>
         ///     This is the effective profit margin, which is the difference in coin value of this resource vs. the coin value of
-        ///     all of the items
-        ///     that are required to produce it.
+        ///     all of the items that are required to produce it.
         /// </summary>
         public double ProfitMargin => Requires.Any()
                                           ? CoinValue - SumOfSubcomponentValues
                                           : CoinValue;
 
+
         #region Calculation Cache Backing
+        // We cache the results of this calculation because they won't change and so we aren't doing it multiple times whenever
+        // we want to look at this value.
 
         TimeSpan _cachedTimeToProduceSubcomponents;
 
@@ -114,7 +117,7 @@ namespace DeepTownResourcesCalculator
 
         /// <summary>
         ///     The length of time it takes to craft all required sub-components (and their sub-components) EXCLUDING its own
-        ///     crafting time
+        ///     crafting time.
         /// </summary>
         public TimeSpan TimeToProduceSubcomponents
         {
@@ -122,7 +125,7 @@ namespace DeepTownResourcesCalculator
             {
                 if (!_isTimeToProduceSubcomponentsCached)
                 {
-                    _cachedTimeToProduceSubcomponents = Requires.Any() && TimeToProduceSubcomponentsInSeconds > 0
+                    _cachedTimeToProduceSubcomponents = Requires.Any(m => m.Key.TimeToProduce > TimeSpan.Zero)
                                                             ? TimeSpan.FromSeconds(Requires.Sum(d => d.Key.TotalTimeToProduce.TotalSeconds * d.Value))
                                                             : TimeSpan.Zero;
 
@@ -138,10 +141,6 @@ namespace DeepTownResourcesCalculator
         ///     <see cref="TimeToProduce" /> the material, itself
         /// </summary>
         public TimeSpan TotalTimeToProduce => TimeToProduceSubcomponents.Add(TimeToProduce);
-
-
-        double TimeToProduceSubcomponentsInSeconds => TimeSpan.FromMilliseconds(Requires.Sum(d => d.Key.TotalTimeToProduce.TotalMilliseconds * d.Value)).TotalSeconds;
-
 
         /// <summary>
         ///     This is the ratio of the item's coin value to the TOTAL time required (*including* subcomponent production time).

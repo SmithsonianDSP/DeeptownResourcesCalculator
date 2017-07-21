@@ -1,4 +1,4 @@
-**Note:** Best viewed on the [GitHub Pages version](https://smithsoniandsp.github.io/DeeptownResourcesCalculator/)
+<sup>**Note:** Best viewed on the GitHub Pages version: https://smithsoniandsp.github.io/DeeptownResourcesCalculator/</sup>
 
 - - -
 
@@ -19,14 +19,46 @@ much easier in a simple console program. And this is the result.
 The output from the program can be found in this repository so you do not need to download and run it, 
 yourself, to look at the data. 
 
-See the footnotes, below, for more information on the calculations and data.
+All in all, most of it is probably not anything you wouldn't have already suspected... but, to me, the real
+value is that it is now *compartive*: you can see how much total time each resource requires compared to the rest!
 
-1. [Resources by Longest Time To Produce Required Subcomponents](https://smithsoniandsp.github.io/DeeptownResourcesCalculator/Outputs/1-LongestTimeToProduceSubcomponents) [[1](#1)][[2](#2)][[3](#3)]
-2. [Resources by Most Expensive Subcomponts](https://smithsoniandsp.github.io/DeeptownResourcesCalculator/Outputs/2-MostExpensiveSubcomponts)
-3. [Resources by Highest Profit Margins](https://smithsoniandsp.github.io/DeeptownResourcesCalculator/Outputs/3-HighestProfitMargins) [[4](#4)]
+See the footnotes, below, for information on the data and calculation methods.
+
+1. [Resources by Time To Produce Required Subcomponents](https://smithsoniandsp.github.io/DeeptownResourcesCalculator/Outputs/1-LongestTimeToProduceSubcomponents) <sup>[[**1**](#1)][[**2**](#2)][[**3**](#3)]</sup>
+
+2. [Resources by Total Value of Subcomponts](https://smithsoniandsp.github.io/DeeptownResourcesCalculator/Outputs/2-MostExpensiveSubcomponts)
+
+3. [Resources by Profit Margins](https://smithsoniandsp.github.io/DeeptownResourcesCalculator/Outputs/3-HighestProfitMargins) <sup>[[**4**](#4)]</sup>
+
 4. [Resources by Time-To-Value Ratio](https://smithsoniandsp.github.io/DeeptownResourcesCalculator/Outputs/4-TimeToValueRatio)
+
 5. [Resources by Time Required @ Max Request (5,000)](https://smithsoniandsp.github.io/DeeptownResourcesCalculator/Outputs/5-TimeRequiredAtMaxRequest)
+
 6. [Resources by Value @ Max Request (5,000)](https://smithsoniandsp.github.io/DeeptownResourcesCalculator/Outputs/6-ValueAtMaxRequest)
+
+<sup>**Note**: "Charcoal" is the smelted version of coal produced from wood. All calculations for resources that use coal (or graphite)
+use the mine-produced version of Coal. If substitued with the Charcoal version, anything that uses coal in its production chain would
+have increased `TimeToProduce` and lower `ProfitMargin` values.</sup>
+
+&nbsp;
+
+- - -
+
+### What's Next?
+
+Well, I don't really know. I didn't really have much additional plans beyond this!
+
+However, one potential idea that had occured to me was to break down each resource's time requirements by the 
+different production types (e.g., mine, smelter, crafting, chemistry, etc.) to show how the `TotalTimeToProduce`
+time is distributed between the different types... 
+
+(If there ***is*** interest in this, let me know! I probably might do this, anyways, but if I know there are people interested,
+it will likely happen sooner!)
+
+Beyond that, though, I'm really not sure. I considered building an actual GUI for it and allow you to select resources, quantities,
+etc., and display the totals and stats for that, but I'm not really certain there would actually be much use for it.
+
+If you have something in mind or would like to suggest, I'm open to ideas!
 
 &nbsp;
 
@@ -50,6 +82,8 @@ but *to show how resources compare to others.***
    * The best estimate for the effective, online water collection rate (because it isn't *always* raining) is
     `2.5 RPM`. I haven't been able to verify or test this, but anyone can provide a more accurate value for
     this, please let me know.
+
+   * Oil rate is based off of a Level 3 oil pump (no boosts)
 
 2. <a name="2"></a>All production rates assume ***online mining*** speeds, ***no crystal boosts***, and ***no drone boosts***.  
 

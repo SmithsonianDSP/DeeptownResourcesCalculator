@@ -1,8 +1,6 @@
 ## Time to Produce 5,000 of each resource:
 ### (does not include subcomponents)
 
-- - - 
-
 | #  	| Resource          	| Total Production Time         	|
 |----	|-------------------	|-------------------------------	|
 | 1  	| Ethanol           	| 104 days, 4 hours             	|

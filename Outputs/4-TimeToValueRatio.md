@@ -1,7 +1,6 @@
 ## Best "Profit to Total Production Time" Materials:
 ### CPMSC == Coins Per Minute Spent Crafting
 #### (includes time spent on subcomponents)
-- - - 
 
 | #  	| Resource          	| CPMSC        	|
 |----	|-------------------	| -------------:|
