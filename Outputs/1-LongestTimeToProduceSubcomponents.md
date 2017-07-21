@@ -1,5 +1,6 @@
 ## Total Time to Produce Required Subcomponents:
-|   	|            	|  	|
+
+| **#**  	| **Resource**   	| **Production Time Req'd** 	|
 |----	|-------------------	|---------------------------------	|
 | 1  	| Plastic           	| 18 hours, 3 minutes, 17 seconds 	|
 | 2  	| Solar panel       	| 5 hours, 5 minutes              	|
