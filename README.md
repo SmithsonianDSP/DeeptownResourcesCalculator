@@ -1,4 +1,4 @@
-﻿# Deep Town Resources Calculator
+**Note:** Best viewed on the [GitHub Pages version](https://smithsoniandsp.github.io/DeeptownResourcesCalculator/)
 
 - - -
 
@@ -21,12 +21,12 @@ yourself, to look at the data.
 
 See the footnotes, below, for more information on the calculations and data.
 
-1. [Resources by Longest Time To Produce Required Subcomponents](/Outputs/1-LongestTimeToProduceSubcomponents.txt) [[1](#1)][[2](#2)][[3](#3)]
-2. [Resources by Most Expensive Subcomponts](/Outputs/2-MostExpensiveSubcomponts.txt)
-3. [Resources by Highest Profit Margins](/Outputs/3-HighestProfitMargins.txt) [[4](#4)]
-4. [Resources by Time-To-Value Ratio](/Outputs/4-TimeToValueRatio.txt)
-5. [Resources by Time Required @ Max Request (5,000)](/Outputs/5-TimeRequiredAtMaxRequest.txt)
-6. [Resources by Value @ Max Request (5,000)](/Outputs/6-ValueAtMaxRequest.txt)
+1. [Resources by Longest Time To Produce Required Subcomponents](https://smithsoniandsp.github.io/DeeptownResourcesCalculator/Outputs/1-LongestTimeToProduceSubcomponents) [[1](#1)][[2](#2)][[3](#3)]
+2. [Resources by Most Expensive Subcomponts](https://smithsoniandsp.github.io/DeeptownResourcesCalculator/Outputs/2-MostExpensiveSubcomponts)
+3. [Resources by Highest Profit Margins](https://smithsoniandsp.github.io/DeeptownResourcesCalculator/Outputs/3-HighestProfitMargins) [[4](#4)]
+4. [Resources by Time-To-Value Ratio](https://smithsoniandsp.github.io/DeeptownResourcesCalculator/Outputs/4-TimeToValueRatio)
+5. [Resources by Time Required @ Max Request (5,000)](https://smithsoniandsp.github.io/DeeptownResourcesCalculator/Outputs/5-TimeRequiredAtMaxRequest)
+6. [Resources by Value @ Max Request (5,000)](https://smithsoniandsp.github.io/DeeptownResourcesCalculator/Outputs/6-ValueAtMaxRequest)
 
 &nbsp;
 
