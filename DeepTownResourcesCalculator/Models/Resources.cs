@@ -62,8 +62,8 @@ namespace DeepTownResourcesCalculator
 
         #region Other Base Resources
 
-        // TODO: Figure out what a good rate will be for Water... water collector is 5-7RPM, but need to factor in frequency of rain...
-        static readonly MaterialBase Water = new MaterialBase { Name = "Water", CoinValue = 5, TimeToCraft = TimeSpan.Zero };
+        // Using the best estimated on-line effective water collection rate (as it is not *always* raining...) of 2.5 RPM
+        static readonly MaterialBase Water = new MaterialBase { Name = "Water", CoinValue = 5, TimeToCraft = TimeSpan.FromMinutes(1D / 2.5D) };
 
         /// Assuming a Level 3 Oil Pump rate (0.3 RPM)
         static readonly MaterialBase Oil = new MaterialBase { Name = "Oil", CoinValue = 21, TimeToCraft = TimeSpan.FromMinutes(1D / 0.3D) };
@@ -76,7 +76,6 @@ namespace DeepTownResourcesCalculator
         static readonly MaterialBase GrapeSeed = new MaterialBase { Name = "TreeSeed", CoinValue = 1200, TimeToCraft = TimeSpan.Zero };
 
         #endregion
-
 
         static readonly MaterialBase CopperBar = new MaterialBase
         {
@@ -236,7 +235,7 @@ namespace DeepTownResourcesCalculator
             TimeToCraft = TimeSpan.FromMinutes(1),
             Requires =
             {
-                [Amethyst] = 0
+                [Amethyst] = 5
             }
         };
 
@@ -608,12 +607,26 @@ namespace DeepTownResourcesCalculator
             }
         };
 
+        // Note: recording "charcoal" (smelted) as seperate from coal (mined) mainly for comparison's sake
+        //       1 wood produces 50 [char]coal
+        static readonly MaterialBase Charcoal = new MaterialBase
+        {
+            Name = "Charcoal",
+            CoinValue = Coal.CoinValue,
+            TimeToCraft = TimeSpan.FromSeconds(60D / 50D),
+            Requires =
+            {
+                [Wood] = 1D / 50D
+            }
+        };
+
+
         public static readonly MaterialBase[] AllMaterialsCollection =
         {
             Coal, Amber, CopperOre, IronOre, AluminumOre, SilverOre, GoldOre, PlatinumOre,
             Emerald, Ruby, Topaz, Sapphire, Amethyst, Diamond,
             Sulfur, Sodium, Silicon, Water, Oil,
-            CopperBar, IronBar, AluminumBar, SteelBar, SilverBar, GoldBar,
+            CopperBar, IronBar, AluminumBar, SteelBar, SilverBar, GoldBar, Charcoal,
             Glass, SteelPlate,
             PolishedAmber, PolishedAmethyst, PolishedDiamond, PolishedEmerald, PolishedRuby, PolishedSapphire, PolishedTopaz,
             AmberBracelet, EmeraldRing,
