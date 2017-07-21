@@ -1,5 +1,5 @@
 Top Crafting Time Required For Subcomponents:
-
+```
 1:      Plastic                  18 hours, 3 minutes, 17 seconds
 
 2:      Solar panel              5 hours, 5 minutes
@@ -75,3 +75,4 @@ Top Crafting Time Required For Subcomponents:
 63:     Gold ore                 3 seconds
 64:     Emerald                  3 seconds
 65:     Ruby                     3 seconds
+```
