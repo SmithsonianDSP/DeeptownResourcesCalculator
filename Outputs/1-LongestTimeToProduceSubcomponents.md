@@ -1,7 +1,7 @@
 ## Total Time to Produce Required Subcomponents:
-
-| 1  	| Plastic           	| 18 hours, 3 minutes, 17 seconds 	|
+|   	|            	|  	|
 |----	|-------------------	|---------------------------------	|
+| 1  	| Plastic           	| 18 hours, 3 minutes, 17 seconds 	|
 | 2  	| Solar panel       	| 5 hours, 5 minutes              	|
 | 3  	| Refined oil       	| 3 hours, 46 minutes, 20 seconds 	|
 | 4  	| Motherboard       	| 2 hours, 47 minutes, 27 seconds 	|
