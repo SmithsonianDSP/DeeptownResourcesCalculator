@@ -61,7 +61,7 @@ but *to show how resources compare to others.***
   `ProfitMargin` for a copper bar is: `25 - (5 * 2) = 15`.
 
 5. <a name="5"></a>The "**Time-to-Value**" ratio is:  
- `ProfitMargin` ÷ (`TimeToProduceSubcomponents` + `TimeToProduce`)  
+ `CoinValue` ÷ (`TimeToProduceSubcomponents` + `TimeToProduce`)  
    This represents the *total amount of time* spent on it *and* its subcomponents (mining, smelting, crafting)
  **relative to the selling price of the item itself**.
 
