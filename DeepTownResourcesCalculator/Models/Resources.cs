@@ -4,7 +4,7 @@ namespace DeepTownResourcesCalculator
     public static class Resources
     {
         /// <summary>
-        ///     This function is used to calculate the <see cref="MaterialBase.TimeToCraft"/> for base materials (e.g., Iron Ore, Emeralds, etc.) that
+        ///     This function is used to calculate the <see cref="ResourceBaseModel.TimeToProduce"/> for base materials (e.g., Iron Ore, Emeralds, etc.) that
         ///     are gathered from mineral mines because not all resources have an area that produces 100% of the respective resource (e.g., Iron Ore).
         /// </summary>
         /// <param name="maxPercent">
@@ -26,213 +26,268 @@ namespace DeepTownResourcesCalculator
 
         #region Mineral Mine Resources
 
-        static readonly MaterialBase Coal = new MaterialBase { Name = "Coal", CoinValue = 1, TimeToCraft = BaseMineralWithMineRate };
-        static readonly MaterialBase Amber = new MaterialBase { Name = "Amber", CoinValue = 4, TimeToCraft = BaseMineralWithMineRate };
-        static readonly MaterialBase CopperOre = new MaterialBase { Name = "CopperOre", CoinValue = 2, TimeToCraft = BaseMineralWithMineRate };
-        static readonly MaterialBase AluminumOre = new MaterialBase { Name = "AluminumOre", CoinValue = 5, TimeToCraft = BaseMineralWithMineRate };
-        static readonly MaterialBase GoldOre = new MaterialBase { Name = "GoldOre", CoinValue = 10, TimeToCraft = BaseMineralWithMineRate };
 
-        static readonly MaterialBase IronOre = new MaterialBase { Name = "IronOre", CoinValue = 3, TimeToCraft = GetBaseRateFromMaxMinePercent(0.30) };
+        static readonly ResourceBaseModel Coal =
+                new ResourceBaseModel { Name = "Coal", CoinValue = 1, TimeToProduce = BaseMineralWithMineRate };
 
-        static readonly MaterialBase SilverOre = new MaterialBase { Name = "SilverOre", CoinValue = 7, TimeToCraft = GetBaseRateFromMaxMinePercent(0.55) };  // TODO: Verify Mining Rate
+        static readonly ResourceBaseModel Amber =
+                new ResourceBaseModel { Name = "Amber", CoinValue = 4, TimeToProduce = BaseMineralWithMineRate };
 
-        static readonly MaterialBase PlatinumOre = new MaterialBase { Name = "Platinum", CoinValue = 13, TimeToCraft = GetBaseRateFromMaxMinePercent(0.035) }; // TODO: Verify Mining Rate
+        static readonly ResourceBaseModel CopperOre =
+                new ResourceBaseModel { Name = "CopperOre", CoinValue = 2, TimeToProduce = BaseMineralWithMineRate };
+
+        static readonly ResourceBaseModel AluminumOre =
+                new ResourceBaseModel { Name = "AluminumOre", CoinValue = 5, TimeToProduce = BaseMineralWithMineRate };
+
+        static readonly ResourceBaseModel GoldOre =
+                new ResourceBaseModel { Name = "GoldOre", CoinValue = 10, TimeToProduce = BaseMineralWithMineRate };
+
+        static readonly ResourceBaseModel IronOre =
+                new ResourceBaseModel { Name = "IronOre", CoinValue = 3, TimeToProduce = GetBaseRateFromMaxMinePercent(0.30) };
+
+
+        static readonly ResourceBaseModel SilverOre =
+                new ResourceBaseModel { Name = "SilverOre", CoinValue = 7, TimeToProduce = GetBaseRateFromMaxMinePercent(0.55) }; // TODO: Verify Mining Rate
+
+        static readonly ResourceBaseModel PlatinumOre =
+                new ResourceBaseModel { Name = "Platinum", CoinValue = 13, TimeToProduce = GetBaseRateFromMaxMinePercent(0.035) }; // TODO: Verify Mining Rate
+
 
         #endregion
+
 
         #region Gem Resources
-        static readonly MaterialBase Emerald = new MaterialBase { Name = "Emerald", CoinValue = 12, TimeToCraft = BaseMineralWithMineRate };
-        static readonly MaterialBase Ruby = new MaterialBase { Name = "Ruby", CoinValue = 15, TimeToCraft = BaseMineralWithMineRate };
 
-        static readonly MaterialBase Topaz = new MaterialBase { Name = "Topaz", CoinValue = 14, TimeToCraft = GetBaseRateFromMaxMinePercent(0.30) };
-        static readonly MaterialBase Sapphire = new MaterialBase { Name = "Sapphire", CoinValue = 16, TimeToCraft = GetBaseRateFromMaxMinePercent(0.18) };
-        static readonly MaterialBase Amethyst = new MaterialBase { Name = "Amethyst", CoinValue = 18, TimeToCraft = GetBaseRateFromMaxMinePercent(0.37) };
-        static readonly MaterialBase Diamond = new MaterialBase { Name = "Diamond", CoinValue = 18, TimeToCraft = GetBaseRateFromMaxMinePercent(0.18) };
+
+        static readonly ResourceBaseModel Emerald =
+                new ResourceBaseModel { Name = "Emerald", CoinValue = 12, TimeToProduce = BaseMineralWithMineRate };
+
+        static readonly ResourceBaseModel Ruby =
+                new ResourceBaseModel { Name = "Ruby", CoinValue = 15, TimeToProduce = BaseMineralWithMineRate };
+
+        static readonly ResourceBaseModel Topaz =
+                new ResourceBaseModel { Name = "Topaz", CoinValue = 14, TimeToProduce = GetBaseRateFromMaxMinePercent(0.30) };
+
+        static readonly ResourceBaseModel Sapphire =
+                new ResourceBaseModel { Name = "Sapphire", CoinValue = 16, TimeToProduce = GetBaseRateFromMaxMinePercent(0.18) };
+
+        static readonly ResourceBaseModel Amethyst =
+                new ResourceBaseModel { Name = "Amethyst", CoinValue = 18, TimeToProduce = GetBaseRateFromMaxMinePercent(0.37) };
+
+        static readonly ResourceBaseModel Diamond =
+                new ResourceBaseModel { Name = "Diamond", CoinValue = 18, TimeToProduce = GetBaseRateFromMaxMinePercent(0.18) };
+
+
         #endregion
+
 
         #region Chemical Mine Resources
 
-        static readonly MaterialBase Sulfur = new MaterialBase { Name = "Sulfur", CoinValue = 100, TimeToCraft = TimeSpan.FromMinutes(2) };
 
-        static readonly MaterialBase Silicon = new MaterialBase { Name = "Silicon", CoinValue = 100, TimeToCraft = TimeSpan.FromMinutes(2) };
+        static readonly ResourceBaseModel Sulfur =
+                new ResourceBaseModel { Name = "Sulfur", CoinValue = 100, TimeToProduce = TimeSpan.FromMinutes(2) };
 
-        static readonly MaterialBase Sodium = new MaterialBase { Name = "Sodium", CoinValue = 100, TimeToCraft = TimeSpan.FromMinutes(2) };
+        static readonly ResourceBaseModel Silicon =
+                new ResourceBaseModel { Name = "Silicon", CoinValue = 100, TimeToProduce = TimeSpan.FromMinutes(2) };
+
+        static readonly ResourceBaseModel Sodium =
+                new ResourceBaseModel { Name = "Sodium", CoinValue = 100, TimeToProduce = TimeSpan.FromMinutes(2) };
+
 
         #endregion
+
 
         #region Other Base Resources
 
+
         // Using the best estimated on-line effective water collection rate (as it is not *always* raining...) of 2.5 RPM
-        static readonly MaterialBase Water = new MaterialBase { Name = "Water", CoinValue = 5, TimeToCraft = TimeSpan.FromMinutes(1D / 2.5D) };
+        static readonly ResourceBaseModel Water =
+                new ResourceBaseModel { Name = "Water", CoinValue = 5, TimeToProduce = TimeSpan.FromMinutes(1D / 2.5D) };
 
         /// Assuming a Level 3 Oil Pump rate (0.3 RPM)
-        static readonly MaterialBase Oil = new MaterialBase { Name = "Oil", CoinValue = 21, TimeToCraft = TimeSpan.FromMinutes(1D / 0.3D) };
+        static readonly ResourceBaseModel Oil =
+                new ResourceBaseModel { Name = "Oil", CoinValue = 21, TimeToProduce = TimeSpan.FromMinutes(1D / 0.3D) };
+
+
         #endregion
+
 
         #region Greenhouse Seeds
 
-        static readonly MaterialBase TreeSeed = new MaterialBase { Name = "TreeSeed", CoinValue = 20, TimeToCraft = TimeSpan.Zero };
-        static readonly MaterialBase LianaSeed = new MaterialBase { Name = "LianaSeed", CoinValue = 1000, TimeToCraft = TimeSpan.Zero };
-        static readonly MaterialBase GrapeSeed = new MaterialBase { Name = "TreeSeed", CoinValue = 1200, TimeToCraft = TimeSpan.Zero };
+
+        static readonly ResourceBaseModel TreeSeed =
+                new ResourceBaseModel { Name = "TreeSeed", CoinValue = 20, TimeToProduce = TimeSpan.Zero };
+
+        static readonly ResourceBaseModel LianaSeed =
+                new ResourceBaseModel { Name = "LianaSeed", CoinValue = 1000, TimeToProduce = TimeSpan.Zero };
+
+        static readonly ResourceBaseModel GrapeSeed =
+                new ResourceBaseModel { Name = "TreeSeed", CoinValue = 1200, TimeToProduce = TimeSpan.Zero };
+
 
         #endregion
 
-        static readonly MaterialBase CopperBar = new MaterialBase
+        static readonly ResourceBaseModel CopperBar = new ResourceBaseModel
         {
             Name = "CopperBar",
             CoinValue = 25,
-            TimeToCraft = TimeSpan.FromSeconds(10),
+            TimeToProduce = TimeSpan.FromSeconds(10),
             Requires =
             {
                 [CopperOre] = 5
             }
         };
 
-        static readonly MaterialBase IronBar = new MaterialBase
+        static readonly ResourceBaseModel IronBar = new ResourceBaseModel
         {
             Name = "IronBar",
             CoinValue = 40,
-            TimeToCraft = TimeSpan.FromSeconds(15),
+            TimeToProduce = TimeSpan.FromSeconds(15),
             Requires =
             {
                 [IronOre] = 5
             }
         };
 
-        static readonly MaterialBase AluminumBar = new MaterialBase
+        static readonly ResourceBaseModel AluminumBar = new ResourceBaseModel
         {
             Name = "AluminumBar",
             CoinValue = 50,
-            TimeToCraft = TimeSpan.FromSeconds(15),
+            TimeToProduce = TimeSpan.FromSeconds(15),
             Requires =
             {
                 [AluminumOre] = 5
             }
         };
 
-
-
-        static readonly MaterialBase SilverBar = new MaterialBase
+        static readonly ResourceBaseModel SilverBar = new ResourceBaseModel
         {
             Name = "SilverBar",
             CoinValue = 200,
-            TimeToCraft = TimeSpan.FromSeconds(60),
+            TimeToProduce = TimeSpan.FromSeconds(60),
             Requires =
             {
                 [SilverOre] = 5
             }
         };
 
-        static readonly MaterialBase GoldBar = new MaterialBase
+        static readonly ResourceBaseModel GoldBar = new ResourceBaseModel
         {
             Name = "GoldBar",
             CoinValue = 250,
-            TimeToCraft = TimeSpan.FromSeconds(60),
+            TimeToProduce = TimeSpan.FromSeconds(60),
             Requires =
             {
                 [GoldOre] = 5
             }
         };
 
-        static readonly MaterialBase Glass = new MaterialBase
+        static readonly ResourceBaseModel Glass = new ResourceBaseModel
         {
             Name = "Glass",
             CoinValue = 450,
-            TimeToCraft = TimeSpan.FromSeconds(60),
+            TimeToProduce = TimeSpan.FromSeconds(60),
             Requires =
             {
                 [Silicon] = 2
             }
         };
 
-
-        static readonly MaterialBase PolishedAmber = new MaterialBase
+        static readonly ResourceBaseModel PolishedAmber = new ResourceBaseModel
         {
             Name = "PolishedAmber",
             CoinValue = 70,
-            TimeToCraft = TimeSpan.FromSeconds(30),
+            TimeToProduce = TimeSpan.FromSeconds(30),
             Requires =
             {
                 [Amber] = 5
             }
         };
-        static readonly MaterialBase PolishedEmerald = new MaterialBase
+
+        static readonly ResourceBaseModel PolishedEmerald = new ResourceBaseModel
         {
             Name = "PolishedEmerald",
             CoinValue = 160,
-            TimeToCraft = TimeSpan.FromSeconds(30),
+            TimeToProduce = TimeSpan.FromSeconds(30),
             Requires =
             {
                 [Emerald] = 5
             }
         };
-        static readonly MaterialBase AmberBracelet = new MaterialBase
+
+        static readonly ResourceBaseModel AmberBracelet = new ResourceBaseModel
         {
             Name = "AmberBracelet",
             CoinValue = 280,
-            TimeToCraft = TimeSpan.FromMinutes(2),
+            TimeToProduce = TimeSpan.FromMinutes(2),
             Requires =
             {
                 [SilverBar] = 1,
                 [PolishedAmber] = 1
             }
         };
-        static readonly MaterialBase EmeraldRing = new MaterialBase
+
+        static readonly ResourceBaseModel EmeraldRing = new ResourceBaseModel
         {
             Name = "EmeraldRing",
             CoinValue = 450,
-            TimeToCraft = TimeSpan.FromMinutes(5),
+            TimeToProduce = TimeSpan.FromMinutes(5),
             Requires =
             {
                 [GoldBar] = 1,
                 [PolishedEmerald] = 1
             }
         };
-        static readonly MaterialBase PolishedTopaz = new MaterialBase
+
+        static readonly ResourceBaseModel PolishedTopaz = new ResourceBaseModel
         {
             Name = "PolishedTopaz",
             CoinValue = 200,
-            TimeToCraft = TimeSpan.FromMinutes(1),
+            TimeToProduce = TimeSpan.FromMinutes(1),
             Requires =
             {
                 [Topaz] = 5
             }
         };
-        static readonly MaterialBase PolishedRuby = new MaterialBase
+
+        static readonly ResourceBaseModel PolishedRuby = new ResourceBaseModel
         {
             Name = "PolishedRuby",
             CoinValue = 250,
-            TimeToCraft = TimeSpan.FromMinutes(1),
+            TimeToProduce = TimeSpan.FromMinutes(1),
             Requires =
             {
                 [Ruby] = 5
             }
         };
-        static readonly MaterialBase PolishedDiamond = new MaterialBase
+
+        static readonly ResourceBaseModel PolishedDiamond = new ResourceBaseModel
         {
             Name = "PolishedDiamond",
             CoinValue = 300,
-            TimeToCraft = TimeSpan.FromMinutes(1),
+            TimeToProduce = TimeSpan.FromMinutes(1),
             Requires =
             {
                 [Diamond] = 5
             }
         };
-        static readonly MaterialBase PolishedSapphire = new MaterialBase
+
+        static readonly ResourceBaseModel PolishedSapphire = new ResourceBaseModel
         {
             Name = "PolishedSapphire",
             CoinValue = 230,
-            TimeToCraft = TimeSpan.FromMinutes(1),
+            TimeToProduce = TimeSpan.FromMinutes(1),
             Requires =
             {
                 [Sapphire] = 5
             }
         };
-        static readonly MaterialBase PolishedAmethyst = new MaterialBase
+
+        static readonly ResourceBaseModel PolishedAmethyst = new ResourceBaseModel
         {
             Name = "PolishedAmethyst",
             CoinValue = 260,
-            TimeToCraft = TimeSpan.FromMinutes(1),
+            TimeToProduce = TimeSpan.FromMinutes(1),
             Requires =
             {
                 [Amethyst] = 5
@@ -240,11 +295,11 @@ namespace DeepTownResourcesCalculator
         };
 
         // Produced in 10-unit quantities
-        static readonly MaterialBase Wood = new MaterialBase
+        static readonly ResourceBaseModel Wood = new ResourceBaseModel
         {
             Name = "Wood",
             CoinValue = 193,
-            TimeToCraft = TimeSpan.FromMinutes(30D / 10D),
+            TimeToProduce = TimeSpan.FromMinutes(30D / 10D),
             Requires =
             {
                 [Water] = 10D / 10D,
@@ -252,11 +307,11 @@ namespace DeepTownResourcesCalculator
             }
         };
 
-        static readonly MaterialBase Liana = new MaterialBase
+        static readonly ResourceBaseModel Liana = new ResourceBaseModel
         {
             Name = "Liana",
             CoinValue = 1700,
-            TimeToCraft = TimeSpan.FromMinutes(30),
+            TimeToProduce = TimeSpan.FromMinutes(30),
             Requires =
             {
                 [Water] = 20,
@@ -265,11 +320,11 @@ namespace DeepTownResourcesCalculator
         };
 
         // Produced in 2-unit quantities
-        static readonly MaterialBase Grapes = new MaterialBase
+        static readonly ResourceBaseModel Grapes = new ResourceBaseModel
         {
             Name = "Grapes",
             CoinValue = 1500,
-            TimeToCraft = TimeSpan.FromMinutes(30D / 2D),
+            TimeToProduce = TimeSpan.FromMinutes(30D / 2D),
             Requires =
             {
                 [Water] = 15D / 2D,
@@ -277,35 +332,34 @@ namespace DeepTownResourcesCalculator
             }
         };
 
-
         // Produced in 2-unit quantities
-        static readonly MaterialBase Rubber = new MaterialBase
+        static readonly ResourceBaseModel Rubber = new ResourceBaseModel
         {
             Name = "Rubber",
             CoinValue = 4000,
-            TimeToCraft = TimeSpan.FromMinutes(30D / 2D),
+            TimeToProduce = TimeSpan.FromMinutes(30D / 2D),
             Requires =
             {
                 [Liana] = 1D / 2D
             }
         };
 
-        static readonly MaterialBase LabFlask = new MaterialBase
+        static readonly ResourceBaseModel LabFlask = new ResourceBaseModel
         {
             Name = "LabFlask",
             CoinValue = 800,
-            TimeToCraft = TimeSpan.FromMinutes(1),
+            TimeToProduce = TimeSpan.FromMinutes(1),
             Requires =
             {
                 [Glass] = 1
             }
         };
 
-        static readonly MaterialBase CleanWater = new MaterialBase
+        static readonly ResourceBaseModel CleanWater = new ResourceBaseModel
         {
             Name = "CleanWater",
             CoinValue = 1200,
-            TimeToCraft = TimeSpan.FromMinutes(10),
+            TimeToProduce = TimeSpan.FromMinutes(10),
             Requires =
             {
                 [Water] = 1,
@@ -313,33 +367,36 @@ namespace DeepTownResourcesCalculator
             }
         };
 
-
         // Produced in 2-unit quantities along with 1 oxygen
-        static readonly MaterialBase Hydrogen = new MaterialBase
+        // Note: the actual values for this might be a bit off due to it being produced simultaneously with Oxygen...
+        static readonly ResourceBaseModel Hydrogen = new ResourceBaseModel
         {
             Name = "Hydrogen",
             CoinValue = 400,
-            TimeToCraft = TimeSpan.FromMinutes(15D / 2D),
+            TimeToProduce = TimeSpan.FromMinutes(15D / 2D),
             Requires =
             {
                 [CleanWater] = 1 / 2D
             }
         };
-        static readonly MaterialBase Oxygen = new MaterialBase
+
+        // Note: the actual values for this might be a bit off due to it being produced simultaneously with Hydrogen...
+        static readonly ResourceBaseModel Oxygen = new ResourceBaseModel
         {
             Name = "Oxygen",
             CoinValue = 900,
-            TimeToCraft = TimeSpan.FromMinutes(15),
+            TimeToProduce = TimeSpan.FromMinutes(15),
             Requires =
             {
                 [CleanWater] = 1
             }
         };
-        static readonly MaterialBase SulfuricAcid = new MaterialBase
+
+        static readonly ResourceBaseModel SulfuricAcid = new ResourceBaseModel
         {
             Name = "SulfuricAcid",
             CoinValue = 3500,
-            TimeToCraft = TimeSpan.FromMinutes(30),
+            TimeToProduce = TimeSpan.FromMinutes(30),
             Requires =
             {
                 [CleanWater] = 1,
@@ -347,11 +404,11 @@ namespace DeepTownResourcesCalculator
             }
         };
 
-        static readonly MaterialBase RefinedOil = new MaterialBase
+        static readonly ResourceBaseModel RefinedOil = new ResourceBaseModel
         {
             Name = "RefinedOil",
             CoinValue = 16500,
-            TimeToCraft = TimeSpan.FromMinutes(30),
+            TimeToProduce = TimeSpan.FromMinutes(30),
             Requires =
             {
                 [Oil] = 10,
@@ -360,23 +417,22 @@ namespace DeepTownResourcesCalculator
             }
         };
 
-        static readonly MaterialBase Graphite = new MaterialBase
+        static readonly ResourceBaseModel Graphite = new ResourceBaseModel
         {
             Name = "Graphite",
             CoinValue = 15,
-            TimeToCraft = TimeSpan.FromSeconds(5),
+            TimeToProduce = TimeSpan.FromSeconds(5),
             Requires =
             {
                 [Coal] = 5
             }
         };
 
-
-        static readonly MaterialBase SteelBar = new MaterialBase
+        static readonly ResourceBaseModel SteelBar = new ResourceBaseModel
         {
             Name = "SteelBar",
             CoinValue = 180,
-            TimeToCraft = TimeSpan.FromSeconds(45),
+            TimeToProduce = TimeSpan.FromSeconds(45),
             Requires =
             {
                 [IronBar] = 1,
@@ -384,24 +440,23 @@ namespace DeepTownResourcesCalculator
             }
         };
 
-        static readonly MaterialBase SteelPlate = new MaterialBase
+        static readonly ResourceBaseModel SteelPlate = new ResourceBaseModel
         {
             Name = "SteelPlate",
             CoinValue = 1800,
-            TimeToCraft = TimeSpan.FromMinutes(2),
+            TimeToProduce = TimeSpan.FromMinutes(2),
             Requires =
             {
                 [SteelBar] = 5
             }
         };
 
-
         // produced in 10 unit quantities
-        static readonly MaterialBase CopperNails = new MaterialBase
+        static readonly ResourceBaseModel CopperNails = new ResourceBaseModel
         {
             Name = "CopperNails",
             CoinValue = 7,
-            TimeToCraft = TimeSpan.FromSeconds(20D / 10),
+            TimeToProduce = TimeSpan.FromSeconds(20D / 10),
             Requires =
             {
                 [CopperBar] = 1D / 10
@@ -409,22 +464,22 @@ namespace DeepTownResourcesCalculator
         };
 
         // Produced in 5 unit quantities
-        static readonly MaterialBase CopperWire = new MaterialBase
+        static readonly ResourceBaseModel CopperWire = new ResourceBaseModel
         {
             Name = "CopperWire",
             CoinValue = 5,
-            TimeToCraft = TimeSpan.FromSeconds(30D / 5D),
+            TimeToProduce = TimeSpan.FromSeconds(30D / 5D),
             Requires =
             {
                 [CopperBar] = 1D / 5D
             }
         };
 
-        static readonly MaterialBase Battery = new MaterialBase
+        static readonly ResourceBaseModel Battery = new ResourceBaseModel
         {
             Name = "Battery",
             CoinValue = 200,
-            TimeToCraft = TimeSpan.FromMinutes(2),
+            TimeToProduce = TimeSpan.FromMinutes(2),
             Requires =
             {
                 [Amber] = 1,
@@ -433,11 +488,11 @@ namespace DeepTownResourcesCalculator
             }
         };
 
-        static readonly MaterialBase Circuit = new MaterialBase
+        static readonly ResourceBaseModel Circuit = new ResourceBaseModel
         {
             Name = "Circuit",
             CoinValue = 2070,
-            TimeToCraft = TimeSpan.FromMinutes(3),
+            TimeToProduce = TimeSpan.FromMinutes(3),
             Requires =
             {
                 [IronBar] = 10,
@@ -446,11 +501,11 @@ namespace DeepTownResourcesCalculator
             }
         };
 
-        static readonly MaterialBase Lamp = new MaterialBase
+        static readonly ResourceBaseModel Lamp = new ResourceBaseModel
         {
             Name = "Lamp",
             CoinValue = 760,
-            TimeToCraft = TimeSpan.FromSeconds(80),
+            TimeToProduce = TimeSpan.FromSeconds(80),
             Requires =
             {
                 [CopperBar] = 5,
@@ -459,11 +514,11 @@ namespace DeepTownResourcesCalculator
             }
         };
 
-        static readonly MaterialBase AmberCharger = new MaterialBase
+        static readonly ResourceBaseModel AmberCharger = new ResourceBaseModel
         {
             Name = "AmberCharger",
             CoinValue = 4,
-            TimeToCraft = TimeSpan.FromSeconds(5),
+            TimeToProduce = TimeSpan.FromSeconds(5),
             Requires =
             {
                 [Amber] = 1
@@ -471,22 +526,22 @@ namespace DeepTownResourcesCalculator
         };
 
         // Produced in 2-unit quantities
-        static readonly MaterialBase AluminumBottle = new MaterialBase
+        static readonly ResourceBaseModel AluminumBottle = new ResourceBaseModel
         {
             Name = "AluminumBottle",
             CoinValue = 55,
-            TimeToCraft = TimeSpan.FromSeconds(30D / 2D),
+            TimeToProduce = TimeSpan.FromSeconds(30D / 2D),
             Requires =
             {
                 [AluminumBar] = 1D / 2D
             }
         };
 
-        static readonly MaterialBase Ethanol = new MaterialBase
+        static readonly ResourceBaseModel Ethanol = new ResourceBaseModel
         {
             Name = "Ethanol",
             CoinValue = 4200,
-            TimeToCraft = TimeSpan.FromMinutes(30),
+            TimeToProduce = TimeSpan.FromMinutes(30),
             Requires =
             {
                 [AluminumBottle] = 1,
@@ -494,11 +549,11 @@ namespace DeepTownResourcesCalculator
             }
         };
 
-        static readonly MaterialBase AmberInsulation = new MaterialBase
+        static readonly ResourceBaseModel AmberInsulation = new ResourceBaseModel
         {
             Name = "AmberInsulation",
             CoinValue = 125,
-            TimeToCraft = TimeSpan.FromSeconds(20),
+            TimeToProduce = TimeSpan.FromSeconds(20),
             Requires =
             {
                 [Amber] = 10,
@@ -506,11 +561,11 @@ namespace DeepTownResourcesCalculator
             }
         };
 
-        static readonly MaterialBase InsulatedWire = new MaterialBase
+        static readonly ResourceBaseModel InsulatedWire = new ResourceBaseModel
         {
             Name = "InsulatedWire",
             CoinValue = 750,
-            TimeToCraft = TimeSpan.FromSeconds(200),
+            TimeToProduce = TimeSpan.FromSeconds(200),
             Requires =
             {
                 [CopperWire] = 1,
@@ -519,11 +574,11 @@ namespace DeepTownResourcesCalculator
         };
 
         // Produced in 5-unit quantities
-        static readonly MaterialBase GreenLaser = new MaterialBase
+        static readonly ResourceBaseModel GreenLaser = new ResourceBaseModel
         {
             Name = "GreenLaser",
             CoinValue = 400,
-            TimeToCraft = TimeSpan.FromSeconds(20D / 5D),
+            TimeToProduce = TimeSpan.FromSeconds(20D / 5D),
             Requires =
             {
                 [PolishedEmerald] = 1D / 5D,
@@ -532,11 +587,11 @@ namespace DeepTownResourcesCalculator
             }
         };
 
-        static readonly MaterialBase Plastic = new MaterialBase
+        static readonly ResourceBaseModel Plastic = new ResourceBaseModel
         {
             Name = "Plastic",
             CoinValue = 220000,
-            TimeToCraft = TimeSpan.FromMinutes(30),
+            TimeToProduce = TimeSpan.FromMinutes(30),
             Requires =
             {
                 [RefinedOil] = 1,
@@ -545,11 +600,11 @@ namespace DeepTownResourcesCalculator
             }
         };
 
-        static readonly MaterialBase DiamondCutter = new MaterialBase
+        static readonly ResourceBaseModel DiamondCutter = new ResourceBaseModel
         {
             Name = "DiamondCutter",
             CoinValue = 5000,
-            TimeToCraft = TimeSpan.FromSeconds(30),
+            TimeToProduce = TimeSpan.FromSeconds(30),
             Requires =
             {
                 [SteelPlate] = 1,
@@ -557,11 +612,11 @@ namespace DeepTownResourcesCalculator
             }
         };
 
-        static readonly MaterialBase Motherboard = new MaterialBase
+        static readonly ResourceBaseModel Motherboard = new ResourceBaseModel
         {
             Name = "Motherboard",
             CoinValue = 17000,
-            TimeToCraft = TimeSpan.FromMinutes(30),
+            TimeToProduce = TimeSpan.FromMinutes(30),
             Requires =
             {
                 [Circuit] = 3,
@@ -570,11 +625,11 @@ namespace DeepTownResourcesCalculator
             }
         };
 
-        static readonly MaterialBase SolidPropellant = new MaterialBase
+        static readonly ResourceBaseModel SolidPropellant = new ResourceBaseModel
         {
             Name = "SolidPropellant",
             CoinValue = 27000,
-            TimeToCraft = TimeSpan.FromMinutes(20),
+            TimeToProduce = TimeSpan.FromMinutes(20),
             Requires =
             {
                 [Rubber] = 3,
@@ -582,11 +637,11 @@ namespace DeepTownResourcesCalculator
             }
         };
 
-        static readonly MaterialBase Accumulator = new MaterialBase
+        static readonly ResourceBaseModel Accumulator = new ResourceBaseModel
         {
             Name = "Accumulator",
             CoinValue = 9000,
-            TimeToCraft = TimeSpan.FromMinutes(3),
+            TimeToProduce = TimeSpan.FromMinutes(3),
             Requires =
             {
                 [Sodium] = 20,
@@ -594,11 +649,11 @@ namespace DeepTownResourcesCalculator
             }
         };
 
-        static readonly MaterialBase SolarPanel = new MaterialBase
+        static readonly ResourceBaseModel SolarPanel = new ResourceBaseModel
         {
             Name = "SolarPanel",
             CoinValue = 69000,
-            TimeToCraft = TimeSpan.FromMinutes(1),
+            TimeToProduce = TimeSpan.FromMinutes(1),
             Requires =
             {
                 [Rubber] = 1,
@@ -607,13 +662,13 @@ namespace DeepTownResourcesCalculator
             }
         };
 
-        // Note: recording "charcoal" (smelted) as seperate from coal (mined) mainly for comparison's sake
+        // Note: recording "charcoal" (smelted) separately from mined coal, mainly for comparison's sake
         //       1 wood produces 50 [char]coal
-        static readonly MaterialBase Charcoal = new MaterialBase
+        static readonly ResourceBaseModel Charcoal = new ResourceBaseModel
         {
             Name = "Charcoal",
             CoinValue = Coal.CoinValue,
-            TimeToCraft = TimeSpan.FromSeconds(60D / 50D),
+            TimeToProduce = TimeSpan.FromSeconds(60D / 50D),
             Requires =
             {
                 [Wood] = 1D / 50D
@@ -621,7 +676,7 @@ namespace DeepTownResourcesCalculator
         };
 
 
-        public static readonly MaterialBase[] AllMaterialsCollection =
+        public static readonly ResourceBaseModel[] AllResourcesCollection =
         {
             Coal, Amber, CopperOre, IronOre, AluminumOre, SilverOre, GoldOre, PlatinumOre,
             Emerald, Ruby, Topaz, Sapphire, Amethyst, Diamond,

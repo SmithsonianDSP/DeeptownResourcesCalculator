@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace DeepTownResourcesCalculator
 {
-    public sealed class MaterialBase
+    public sealed class ResourceBaseModel
     {
         public string Name { get; set; }
 
@@ -17,7 +17,7 @@ namespace DeepTownResourcesCalculator
         ///     The point of this is to look at a material's various stats relative to the others, which requires all items
         ///     have a base unit of one.
         /// </remarks>
-        public Dictionary<MaterialBase, double> Requires { get; } = new Dictionary<MaterialBase, double>();
+        public Dictionary<ResourceBaseModel, double> Requires { get; } = new Dictionary<ResourceBaseModel, double>();
 
         /// <summary>
         ///     The coin selling value for ONE UNIT of this resource
@@ -33,21 +33,20 @@ namespace DeepTownResourcesCalculator
         /// <remarks>
         ///     In all cases, we assume ONLINE mining rates, NO 2x/2.5x boosts, and no drone boosts. 
         /// </remarks>
-        public TimeSpan TimeToCraft { get; set; } = TimeSpan.FromSeconds(0);
-
-
+        public TimeSpan TimeToProduce { get; set; } = TimeSpan.FromSeconds(0);
 
 
         #region Calculated Fields and Properties
+
         #region Calculation Cache Backing
 
-        double _cachedSumOfParts;
+        double _cachedSumOfSubcomponentValues;
 
-        bool _isSumOfPartsCached;
+        bool _isSumOfSubcomponentValuesCached;
 
-        TimeSpan _cachedSumToPartsToCraft;
+        TimeSpan _cachedTimeToProduceSubcomponents;
 
-        bool _isSumOfPartsToCraftCached;
+        bool _isTimeToProduceSubcomponentsCached;
 
         #endregion
 
@@ -59,20 +58,20 @@ namespace DeepTownResourcesCalculator
         ///     For <see cref="Resources.Coal"/>, this will be 1, as it does not have any subcomponents.
         ///     For <see cref="Resources.Graphite"/>, this will be 5, because it requires 5 <see cref="Resources.Coal"/>, each with a value of 1.
         /// </example>
-        public double SumOfParts
+        public double SumOfSubcomponentValues
         {
             get
             {
-                if (!_isSumOfPartsCached)
+                if (!_isSumOfSubcomponentValuesCached)
                 {
 
-                    _cachedSumOfParts = Requires.Any() && Requires.Sum(d => d.Key.SumOfParts * d.Value) > 0
-                                            ? Requires.Sum(d => d.Key.SumOfParts * d.Value)
-                                            : CoinValue;
+                    _cachedSumOfSubcomponentValues = Requires.Any() && Requires.Sum(d => d.Key.SumOfSubcomponentValues * d.Value) > 0
+                                                        ? Requires.Sum(d => d.Key.SumOfSubcomponentValues * d.Value)
+                                                        : CoinValue;
 
-                    _isSumOfPartsCached = true;
+                    _isSumOfSubcomponentValuesCached = true;
                 }
-                return _cachedSumOfParts;
+                return _cachedSumOfSubcomponentValues;
             }
         }
 
@@ -81,41 +80,41 @@ namespace DeepTownResourcesCalculator
         ///     that are required to produce it. 
         /// </summary>
         public double ProfitMargin => Requires.Any()
-                                          ? CoinValue - SumOfParts
+                                          ? CoinValue - SumOfSubcomponentValues
                                           : CoinValue;
 
 
         /// <summary>
         ///     The length of time it takes to craft all required sub-components (and their sub-components) EXCLUDING its own crafting time
         /// </summary>
-        public TimeSpan SumOfPartsToCraft
+        public TimeSpan TimeToProduceSubcomponents
         {
             get
             {
-                if (!_isSumOfPartsToCraftCached)
+                if (!_isTimeToProduceSubcomponentsCached)
                 {
 
-                    _cachedSumToPartsToCraft = Requires.Any() && SumOfPartsInSeconds > 0
-                                                   ? TimeSpan.FromSeconds(Requires.Sum(d => d.Key.TotalTimeToCraft.TotalSeconds * d.Value))
-                                                   : TimeSpan.Zero;
+                    _cachedTimeToProduceSubcomponents = Requires.Any() && TimeToProduceSubcomponentsInSeconds > 0
+                                                            ? TimeSpan.FromSeconds(Requires.Sum(d => d.Key.TotalTimeToProduce.TotalSeconds * d.Value))
+                                                            : TimeSpan.Zero;
 
-                    _isSumOfPartsToCraftCached = true;
+                    _isTimeToProduceSubcomponentsCached = true;
                 }
 
-                return _cachedSumToPartsToCraft;
+                return _cachedTimeToProduceSubcomponents;
             }
         }
 
         /// <summary>
-        ///     The length of time it takes to craft all required sub-components (and their sub-components) PLUS the <see cref="TimeToCraft"/> the material, itself
+        ///     The length of time it takes to craft all required sub-components (and their sub-components) PLUS the <see cref="TimeToProduce"/> the material, itself
         /// </summary>
-        public TimeSpan TotalTimeToCraft => SumOfPartsToCraft.Add(TimeToCraft);
+        public TimeSpan TotalTimeToProduce => TimeToProduceSubcomponents.Add(TimeToProduce);
 
 
-        double SumOfPartsInSeconds => TimeSpan.FromMilliseconds(Requires.Sum(d => d.Key.TotalTimeToCraft.TotalMilliseconds * d.Value)).TotalSeconds;
+        double TimeToProduceSubcomponentsInSeconds => TimeSpan.FromMilliseconds(Requires.Sum(d => d.Key.TotalTimeToProduce.TotalMilliseconds * d.Value)).TotalSeconds;
 
 
-        public double ProfitToTimeRequiredRatio => (CoinValue - SumOfParts) / TotalTimeToCraft.TotalMinutes;
+        public double ProfitToTimeRequiredRatio => CoinValue / TotalTimeToProduce.TotalMinutes;
 
         #endregion
 

@@ -46,13 +46,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\Resources.cs" />
-    <Compile Include="Models\MaterialBase.cs" />
+    <Compile Include="Models\ResourceBaseModel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+    <None Include="README.md" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
