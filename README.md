@@ -40,8 +40,6 @@ See the footnotes, below, for information on the data and calculation methods.
 use the mine-produced version of Coal. If substitued with the Charcoal version, anything that uses coal in its production chain would
 have increased `TimeToProduce` and lower `ProfitMargin` values.</sup>
 
-&nbsp;
-
 - - -
 
 ### What's Next?
@@ -59,8 +57,6 @@ Beyond that, though, I'm really not sure. I considered building an actual GUI fo
 etc., and display the totals and stats for that, but I'm not really certain there would actually be much use for it.
 
 If you have something in mind or would like to suggest, I'm open to ideas!
-
-&nbsp;
 
 - - -
 
@@ -100,8 +96,6 @@ but *to show how resources compare to others.***
  `CoinValue` ÷ (`TimeToProduceSubcomponents` + `TimeToProduce`)  
    This represents the *total amount of time* spent on it *and* its subcomponents (mining, smelting, crafting)
  **relative to the selling price of the item itself**.
-
-&nbsp;
 
 - - - - -
 
