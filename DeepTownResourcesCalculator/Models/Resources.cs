@@ -1,4 +1,26 @@
-﻿using System;
+﻿#region license header
+//  DeepTownResourcesCalculator - Statistical Analysis of Game Resources
+//      Code Copyright (C) 2017    -    SmithsonianDSP
+// 
+//     Deep Town (c) is the property of Rockbite Games and is unaffiliated 
+//     with this program. 
+// 
+//     This program is free software: you can redistribute it and/or modify
+//     it under the terms of the GNU General Public License as published by
+//     the Free Software Foundation, either version 3 of the License, or
+//     (at your option) any later version.
+// 
+//     This program is distributed in the hope that it will be useful,
+//     but WITHOUT ANY WARRANTY; without even the implied warranty of
+//     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//     GNU General Public License for more details.
+// 
+//     You should have received a copy of the GNU General Public License
+//     along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#endregion
+
+using System;
+
 namespace DeepTownResourcesCalculator
 {
     public static class Resources
@@ -26,7 +48,6 @@ namespace DeepTownResourcesCalculator
 
         #region Mineral Mine Resources
 
-
         static readonly ResourceBaseModel Coal =
                 new ResourceBaseModel { Name = "Coal", CoinValue = 1, TimeToProduce = BaseMineralWithMineRate };
 
@@ -47,17 +68,15 @@ namespace DeepTownResourcesCalculator
 
 
         static readonly ResourceBaseModel SilverOre =
-                new ResourceBaseModel { Name = "SilverOre", CoinValue = 7, TimeToProduce = GetBaseRateFromMaxMinePercent(0.55) }; // TODO: Verify Mining Rate
+                new ResourceBaseModel { Name = "SilverOre", CoinValue = 7, TimeToProduce = GetBaseRateFromMaxMinePercent(0.55) };
 
         static readonly ResourceBaseModel PlatinumOre =
                 new ResourceBaseModel { Name = "Platinum", CoinValue = 13, TimeToProduce = GetBaseRateFromMaxMinePercent(0.035) }; // TODO: Verify Mining Rate
-
 
         #endregion
 
 
         #region Gem Resources
-
 
         static readonly ResourceBaseModel Emerald =
                 new ResourceBaseModel { Name = "Emerald", CoinValue = 12, TimeToProduce = BaseMineralWithMineRate };
@@ -77,12 +96,10 @@ namespace DeepTownResourcesCalculator
         static readonly ResourceBaseModel Diamond =
                 new ResourceBaseModel { Name = "Diamond", CoinValue = 18, TimeToProduce = GetBaseRateFromMaxMinePercent(0.18) };
 
-
         #endregion
 
 
         #region Chemical Mine Resources
-
 
         static readonly ResourceBaseModel Sulfur =
                 new ResourceBaseModel { Name = "Sulfur", CoinValue = 100, TimeToProduce = TimeSpan.FromMinutes(2) };
@@ -93,12 +110,10 @@ namespace DeepTownResourcesCalculator
         static readonly ResourceBaseModel Sodium =
                 new ResourceBaseModel { Name = "Sodium", CoinValue = 100, TimeToProduce = TimeSpan.FromMinutes(2) };
 
-
         #endregion
 
 
         #region Other Base Resources
-
 
         // Using the best estimated on-line effective water collection rate (as it is not *always* raining...) of 2.5 RPM
         static readonly ResourceBaseModel Water =
@@ -108,12 +123,9 @@ namespace DeepTownResourcesCalculator
         static readonly ResourceBaseModel Oil =
                 new ResourceBaseModel { Name = "Oil", CoinValue = 21, TimeToProduce = TimeSpan.FromMinutes(1D / 0.3D) };
 
-
         #endregion
 
-
         #region Greenhouse Seeds
-
 
         static readonly ResourceBaseModel TreeSeed =
                 new ResourceBaseModel { Name = "TreeSeed", CoinValue = 20, TimeToProduce = TimeSpan.Zero };
@@ -123,7 +135,6 @@ namespace DeepTownResourcesCalculator
 
         static readonly ResourceBaseModel GrapeSeed =
                 new ResourceBaseModel { Name = "TreeSeed", CoinValue = 1200, TimeToProduce = TimeSpan.Zero };
-
 
         #endregion
 

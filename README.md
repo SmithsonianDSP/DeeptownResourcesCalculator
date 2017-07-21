@@ -1,6 +1,6 @@
 ﻿# Deep Town Resources Calculator
 
----
+- - -
 
 ## About 
 
@@ -12,7 +12,7 @@ in the amount of time and resources required to create them? (Spoiler: it's rubb
 This kind of data crunching wasn't really well-suited for doing in a spreadsheet, but I knew I could do it
 much easier in a simple console program. And this is the result. 
 
----
+- - -
 
 ## Results & Data
 
@@ -28,7 +28,9 @@ See the footnotes, below, for more information on the calculations and data.
 5. [Resources by Time Required @ Max Request (5,000)](/Outputs/5-TimeRequiredAtMaxRequest.txt)
 6. [Resources by Value @ Max Request (5,000)](/Outputs/6-ValueAtMaxRequest.txt)
 
----
+&nbsp;
+
+- - -
 
 ### Calculation Footnotes
 
@@ -65,11 +67,32 @@ but *to show how resources compare to others.***
    This represents the *total amount of time* spent on it *and* its subcomponents (mining, smelting, crafting)
  **relative to the selling price of the item itself**.
 
+&nbsp;
 
+- - - - -
 
+&nbsp;
 
+### **License:** &nbsp; &nbsp; &nbsp;GNU GPLv3
 
-
-
-
-
+---
+>     DeepTownResourcesCalculator - Statistical Analysis of Game Resources
+>              Code Copyright (C) 2017    -    SmithsonianDSP
+> 
+>     Deep Town (c) is the property of Rockbite Games and is unaffiliated 
+>     with this program. 
+> 
+>     This program is free software: you can redistribute it and/or modify
+>     it under the terms of the GNU General Public License as published by
+>     the Free Software Foundation, either version 3 of the License, or
+>     (at your option) any later version.
+> 
+>     This program is distributed in the hope that it will be useful,
+>     but WITHOUT ANY WARRANTY; without even the implied warranty of
+>     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+>     GNU General Public License for more details.
+> 
+>     You should have received a copy of the GNU General Public License
+>     along with this program.  If not, see <http://www.gnu.org/licenses/>.
+> 
+- - - 

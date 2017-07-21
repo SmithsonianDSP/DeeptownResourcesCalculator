@@ -6,11 +6,11 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("DeepTownResourcesCalculator")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Statistical Analysis of Game Resources")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("DeepTownResourcesCalculator")]
-[assembly: AssemblyCopyright("Copyright ©  2017")]
+[assembly: AssemblyProduct("Deep Town Resources Calculator")]
+[assembly: AssemblyCopyright("Copyright © SmithsonianDSP 2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

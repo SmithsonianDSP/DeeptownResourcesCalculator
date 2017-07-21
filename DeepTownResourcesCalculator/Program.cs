@@ -1,7 +1,29 @@
-﻿using System;
+﻿#region license header
+//  DeepTownResourcesCalculator - Statistical Analysis of Game Resources
+//      Code Copyright (C) 2017    -    SmithsonianDSP
+// 
+//     Deep Town (c) is the property of Rockbite Games and is unaffiliated 
+//     with this program. 
+// 
+//     This program is free software: you can redistribute it and/or modify
+//     it under the terms of the GNU General Public License as published by
+//     the Free Software Foundation, either version 3 of the License, or
+//     (at your option) any later version.
+// 
+//     This program is distributed in the hope that it will be useful,
+//     but WITHOUT ANY WARRANTY; without even the implied warranty of
+//     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//     GNU General Public License for more details.
+// 
+//     You should have received a copy of the GNU General Public License
+//     along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#endregion
+
+using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Humanizer;
+using Humanizer.Localisation;
 
 namespace DeepTownResourcesCalculator
 {
@@ -10,7 +32,7 @@ namespace DeepTownResourcesCalculator
         [SuppressMessage("ReSharper", "UnusedParameter.Local")]
         static void Main(string[] args)
         {
-            bool quit = false;
+            var quit = false;
 
             while (quit == false)
             {
@@ -157,15 +179,16 @@ namespace DeepTownResourcesCalculator
             var longestToCraft = mats.Where(m => m.TotalTimeToProduce > TimeSpan.Zero)
                                      .OrderByDescending(m => m.TotalTimeToProduce);
 
-            int x = 1;
+            var x = 1;
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("Top Crafting Time Required For Subcomponents:");
             Console.ForegroundColor = ConsoleColor.White;
             foreach (var m in longestToCraft)
             {
-                Console.WriteLine($"{x}:\t{m.Name.Humanize().PadRight(25)}{m.TotalTimeToProduce.Humanize(5, maxUnit: Humanizer.Localisation.TimeUnit.Day, minUnit: Humanizer.Localisation.TimeUnit.Second)}");
+                Console.WriteLine($"{x}:\t{m.Name.Humanize().PadRight(25)}{m.TotalTimeToProduce.Humanize(5, maxUnit: TimeUnit.Day, minUnit: TimeUnit.Second)}");
                 x++;
             }
+
             Console.WriteLine();
         }
 
@@ -182,7 +205,7 @@ namespace DeepTownResourcesCalculator
                                        .OrderByDescending(m => m.SumOfSubcomponentValues)
                                        .ThenBy(m => m.Name);
 
-            int x = 1;
+            var x = 1;
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("Highest Parts Cost Sum:");
             Console.ForegroundColor = ConsoleColor.White;
@@ -194,6 +217,7 @@ namespace DeepTownResourcesCalculator
                 Console.WriteLine($"{x}:\t{m.Name.Humanize().PadRight(25)}{m.SumOfSubcomponentValues.ToString(m.SumOfSubcomponentValues > 1 ? "N0" : "N1").PadLeft(m.SumOfSubcomponentValues > 1 ? 8 : 10)}");
                 x++;
             }
+
             Console.WriteLine();
         }
 
@@ -218,7 +242,7 @@ namespace DeepTownResourcesCalculator
             var noProfit = mats.Where(m => m.ProfitMargin < 1)
                                .OrderBy(m => m.Name);
 
-            int x = 1;
+            var x = 1;
             Console.WriteLine();
             Console.WriteLine();
             Console.ForegroundColor = ConsoleColor.Yellow;
@@ -262,7 +286,7 @@ namespace DeepTownResourcesCalculator
             var noProfit = mats.Where(m => m.ProfitToTimeRequiredRatio < 1)
                                .OrderBy(m => m.Name);
 
-            int x = 1;
+            var x = 1;
             Console.WriteLine();
             Console.WriteLine();
             Console.ForegroundColor = ConsoleColor.Yellow;
@@ -300,7 +324,7 @@ namespace DeepTownResourcesCalculator
             var mostProfit = mats.OrderByDescending(m => m.TimeToProduce.TotalSeconds * 5000)
                                  .ThenBy(m => m.Name);
 
-            int x = 1;
+            var x = 1;
             Console.WriteLine();
             Console.WriteLine();
             Console.ForegroundColor = ConsoleColor.Yellow;
@@ -310,14 +334,15 @@ namespace DeepTownResourcesCalculator
             Console.ForegroundColor = ConsoleColor.White;
             foreach (var m in mostProfit)
             {
-                Console.WriteLine($"{x}:\t{m.Name.Humanize().PadRight(25)}{TimeSpan.FromSeconds(m.TimeToProduce.TotalSeconds * 5000).Humanize(5, maxUnit: Humanizer.Localisation.TimeUnit.Day, minUnit: Humanizer.Localisation.TimeUnit.Minute)}");
+                Console.WriteLine($"{x}:\t{m.Name.Humanize().PadRight(25)}{TimeSpan.FromSeconds(m.TimeToProduce.TotalSeconds * 5000).Humanize(5, maxUnit: TimeUnit.Day, minUnit: TimeUnit.Minute)}");
                 x++;
             }
+
             Console.WriteLine();
         }
 
         /// <summary>
-        ///     [6]     The total coin value for 5,000 of each material (not including sub-components) 
+        ///     [6]     The total coin value for 5,000 of each material (not including sub-components)
         /// </summary>
         static void IndividualValueAtMaxRequest()
         {
@@ -328,7 +353,7 @@ namespace DeepTownResourcesCalculator
             var mostProfit = mats.OrderByDescending(m => m.CoinValue * 5000)
                                  .ThenBy(m => m.Name);
 
-            int x = 1;
+            var x = 1;
             Console.WriteLine();
             Console.WriteLine();
             Console.ForegroundColor = ConsoleColor.Yellow;
@@ -341,9 +366,8 @@ namespace DeepTownResourcesCalculator
                 Console.WriteLine($"{x}:\t{m.Name.Humanize().PadRight(25)}{(m.CoinValue * 5000).ToString("N0").PadLeft(14)}");
                 x++;
             }
+
             Console.WriteLine();
         }
-
-
     }
 }
