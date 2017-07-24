@@ -1,11 +1,18 @@
 ## Most Profit (Over Value of Subcomponents):
 #### `[Coin Value]` - `[Sum of subcomponent value]`
 
-**Note:** The `ProfitMargin` value is not the *true* profit margin; it is the coin value of the given resource
-  compared to the coin value of the subcomponents required to produce it.  
- * **Example**: a copper bar is `25` coin and requires `5` copper ore (worth `2` coin/ea) to produce , so the 
+**Notes:** 
+
+1. The `ProfitMargin` value is not the *true* profit margin; it is the coin value of the given resource
+  compared to the coin value of the base subcomponents required to produce it.  
+   * **Example:** a copper bar is `25` coin and requires `5` copper ore (worth `2` coin/ea) to produce , so the 
   `ProfitMargin` for a copper bar is: `25 - (5 * 2) = 15`.  
+
+2. This calculation is **recursive**, in that it doesn't use the *coin value* of the subcomponents, but instead it 
+   sums the values of all subcomponent's `SumOfSubcomponentValues`, which continues downward until the value
+   of the raw, base materials is returned.  
    &nbsp;  
+
 
 | #  	| Resource          	| Profit Margin 	|
 |----	|-------------------	|---------------	|
