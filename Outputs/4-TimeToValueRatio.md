@@ -8,7 +8,7 @@
 - - - 
 
 The "**Time-to-Value**" ratio is:  
- `CoinValue` ÷ (`TimeToProduceSubcomponents` + `TimeToProduce`)  
+ `CoinValue` Ã· (`TimeToProduceSubcomponents` + `TimeToProduce`)  
 
 This represents the *total amount of time* spent on it *and* its subcomponents (mining, smelting, crafting)
  **relative to the selling price of the item itself**.
