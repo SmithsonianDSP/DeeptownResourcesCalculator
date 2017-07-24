@@ -1,6 +1,7 @@
 ## Coin value for 5,000 of each resource:
-### (does not include subcomponents)
-	 
+##### (Does not include subcomponent values)
+&nbsp;
+
 | #  	| Resource          	| Value per 5,000		|
 |----	|-------------------	|----------------------:	|
 | 1  	| Plastic           	|         1,100,000,000 	|

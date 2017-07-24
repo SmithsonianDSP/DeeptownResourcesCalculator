@@ -1,6 +1,17 @@
-## Best "Profit to Total Production Time" Materials:
-### CPMSC == Coins Per Minute Spent Crafting
-#### (includes time spent on subcomponents)
+## Best "Profit to Total Production Time" Materials: 
+##### (*Includes* time spent on subcomponents)
+
+* CPMSC = **C**oins **P**er **M**inute **S**pent **C**rafting
+
+- - - 
+
+The "**Time-to-Value**" ratio is:  
+ `CoinValue` ÷ (`TimeToProduceSubcomponents` + `TimeToProduce`)  
+
+This represents the *total amount of time* spent on it *and* its subcomponents (mining, smelting, crafting)
+ **relative to the selling price of the item itself**.
+
+- - - 
 
 | #  	| Resource          	| CPMSC        	|
 |----	|-------------------	| -------------:|

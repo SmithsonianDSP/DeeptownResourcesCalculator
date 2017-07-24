@@ -68,3 +68,29 @@
 | 64	| Emerald               | 3 seconds                       	|
 | 65	| Ruby                  | 3 seconds                       	|
 
+- - -
+
+#### Calculation Footnotes
+
+**The purpose of this is *NOT* to ACCURATELY reflect the amount of REAL-TIME required to produce a resource,** 
+but to *show how resources compare to others.*
+
+1. For base resources (e.g., coal, iron ore, diamonds), the `TimeToProduce` value is the time it takes to
+  produce one unit of that resource from a Level 8 mine (@ 17 RPM). This also factors in the availability 
+  of the resource in the mining areas:  
+   * Resources that have a 100% mine available (e.g., Area 1 is 100% coal) have a `TimeToProduce` equal 
+    to 17 / minute.  
+   * Resources __without__ a 100% mine have a `TimeToProduce` of `(17 * [max % available]) / minute`.        
+        (e.g., Iron's best mining areas are 30% iron, so its mining rate works out to 5.1 / minute)  
+   * The best estimate for the effective, online water collection rate (because it isn't *always* raining) is
+    `2.5 RPM`. I haven't been able to verify or test this, but anyone can provide a more accurate value for
+    this, please let me know.
+   * Oil rate is based off of a Level 3 oil pump (no boosts)  
+ 
+2. All production rates assume ***online mining*** speeds, ***no crystal boosts***, and ***no drone boosts***.  
+
+3. **Simultaneous production is NOT considered in durations**. When looking at the "time to produce subcomponents" for a
+  resource, this value is essentially the amount of time it would take if you could only be doing one action
+  at any given time (e.g., first you must mine the base ore, then smelt it into bars one at a time, etc.)
+
+- - - 

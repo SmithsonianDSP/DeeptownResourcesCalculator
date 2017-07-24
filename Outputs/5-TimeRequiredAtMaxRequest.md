@@ -1,5 +1,6 @@
 ## Time to Produce 5,000 of each resource:
-### (does not include subcomponents)
+#### (does not include subcomponent production times)
+&nbsp;
 
 | #  	| Resource          	| Total Production Time         	|
 |----	|-------------------	|-------------------------------	|
