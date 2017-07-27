@@ -60,7 +60,7 @@ If you have something in mind or would like to suggest, I'm open to ideas!
 
 - - -
 
-### Calculation Footnotes
+### <a name="0"></a>Calculation Footnotes
 
 **The purpose of this is *NOT* to ACCURATELY reflect the amount of REAL-TIME required to produce a resource, 
 but *to show how resources compare to others.***
