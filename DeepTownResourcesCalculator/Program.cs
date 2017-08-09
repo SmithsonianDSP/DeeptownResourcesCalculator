@@ -20,6 +20,7 @@
 #endregion
 
 using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Humanizer;
@@ -183,9 +184,12 @@ namespace DeepTownResourcesCalculator
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("Top Crafting Time Required For Subcomponents:");
             Console.ForegroundColor = ConsoleColor.White;
+
+            WriteThreeColumnTableHeader("Production Time Req'd", false);
+
             foreach (var m in longestToCraft)
             {
-                Console.WriteLine($"{x}:\t{m.Name.Humanize().PadRight(25)}{m.TotalTimeToProduce.Humanize(5, maxUnit: TimeUnit.Day, minUnit: TimeUnit.Second)}");
+                WriteThreeColumnLine(x.ToString(), m.PrettyName, m.TotalTimeToProduce.Humanize(5, maxUnit: TimeUnit.Day, minUnit: TimeUnit.Second));
                 x++;
             }
 
@@ -209,12 +213,20 @@ namespace DeepTownResourcesCalculator
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("Highest Parts Cost Sum:");
             Console.ForegroundColor = ConsoleColor.White;
+
+            Console.WriteLine();
+            WriteThreeColumnTableHeader("Value");
             foreach (var m in highestPartsCost)
             {
-                // This formatting string is probably a pain in the ass to read but it really doesn't seem worth to spend the extra time extracting it to its own
-                //  function and making it a lot more human-readable... so I apologize but don't bother spending too much time trying to understand it, as it's 
-                //  really just fancy formatting crap.
-                Console.WriteLine($"{x}:\t{m.Name.Humanize().PadRight(25)}{m.SumOfSubcomponentValues.ToString(m.SumOfSubcomponentValues > 1 ? "N0" : "N1").PadLeft(m.SumOfSubcomponentValues > 1 ? 8 : 10)}");
+                var toStringFormat = m.SumOfSubcomponentValues > 1
+                                                ? "N0"
+                                                : "N1";
+
+                var leftPadding = m.SumOfSubcomponentValues > 1
+                                                ? 8
+                                                : 10;
+
+                WriteThreeColumnLine(x.ToString(), m.PrettyName, m.SumOfSubcomponentValues.ToString(toStringFormat).PadLeft(leftPadding));
                 x++;
             }
 
@@ -248,9 +260,13 @@ namespace DeepTownResourcesCalculator
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("Most Profit Items (item value vs. sum of subcomponent values):");
             Console.ForegroundColor = ConsoleColor.White;
+
+            Console.WriteLine();
+            WriteThreeColumnTableHeader("Profit Margin");
+
             foreach (var m in mostProfit)
             {
-                Console.WriteLine($"{x}:\t{m.Name.Humanize().PadRight(25)}{m.ProfitMargin.ToString("N0").PadLeft(9)}");
+                WriteThreeColumnLine(x.ToString(), m.PrettyName, m.ProfitMargin.ToString("N0"));
                 x++;
             }
 
@@ -258,7 +274,8 @@ namespace DeepTownResourcesCalculator
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine("Zero Cost (all profit):");
             Console.ForegroundColor = ConsoleColor.White;
-            Console.Write(faceValue.Humanize(m => m.Name.Humanize(LetterCasing.Title)));
+
+            WriteNoHeaderTable(faceValue);
             Console.WriteLine();
 
 
@@ -266,7 +283,8 @@ namespace DeepTownResourcesCalculator
             Console.ForegroundColor = ConsoleColor.DarkYellow;
             Console.WriteLine("Zero Values:");
             Console.ForegroundColor = ConsoleColor.White;
-            Console.Write(noProfit.Humanize(m => m.Name.Humanize(LetterCasing.Title)));
+
+            WriteNoHeaderTable(noProfit);
             Console.WriteLine();
         }
 
@@ -298,17 +316,25 @@ namespace DeepTownResourcesCalculator
             Console.WriteLine("     (includes time spent on subcomponents)");
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine();
+
+            WriteThreeColumnTableHeader("CPMSC");
+
             foreach (var m in mostProfit)
             {
-                Console.WriteLine($"{x}:\t{m.Name.Humanize().PadRight(25)}{m.ProfitToTimeRequiredRatio.ToString("N2").PadLeft(7)} CPMSC");
+                WriteThreeColumnLine(x.ToString(), m.PrettyName, m.ProfitToTimeRequiredRatio.ToString("N2").PadLeft(7) + " CPMSC");
                 x++;
             }
 
             Console.WriteLine();
-            Console.ForegroundColor = ConsoleColor.DarkYellow;
-            Console.WriteLine("Zero Values:");
-            Console.ForegroundColor = ConsoleColor.White;
-            Console.Write(noProfit.Humanize(m => m.Name.Humanize(LetterCasing.Title)));
+
+            if (noProfit.Any())
+            {
+                Console.ForegroundColor = ConsoleColor.DarkYellow;
+                Console.WriteLine("Zero Values:");
+                Console.ForegroundColor = ConsoleColor.White;
+
+                WriteNoHeaderTable(noProfit);
+            }
             Console.WriteLine();
         }
 
@@ -332,9 +358,11 @@ namespace DeepTownResourcesCalculator
             Console.ForegroundColor = ConsoleColor.Gray;
             Console.WriteLine("     (does not include subcomponents)");
             Console.ForegroundColor = ConsoleColor.White;
+
+            WriteThreeColumnTableHeader("Total Production Time", false);
             foreach (var m in mostProfit)
             {
-                Console.WriteLine($"{x}:\t{m.Name.Humanize().PadRight(25)}{TimeSpan.FromSeconds(m.TimeToProduce.TotalSeconds * 5000).Humanize(5, maxUnit: TimeUnit.Day, minUnit: TimeUnit.Minute)}");
+                WriteThreeColumnLine(x.ToString(), m.PrettyName, TimeSpan.FromSeconds(m.TimeToProduce.TotalSeconds * 5000).Humanize(5, maxUnit: TimeUnit.Day, minUnit: TimeUnit.Minute));
                 x++;
             }
 
@@ -361,13 +389,143 @@ namespace DeepTownResourcesCalculator
             Console.ForegroundColor = ConsoleColor.Gray;
             Console.WriteLine("     (does not include subcomponents)");
             Console.ForegroundColor = ConsoleColor.White;
+            WriteThreeColumnTableHeader("Value per 5,000");
+
             foreach (var m in mostProfit)
             {
-                Console.WriteLine($"{x}:\t{m.Name.Humanize().PadRight(25)}{(m.CoinValue * 5000).ToString("N0").PadLeft(14)}");
+                WriteThreeColumnLine(x.ToString(), m.PrettyName, (m.CoinValue * 5000).ToString("N0"));
                 x++;
             }
 
             Console.WriteLine();
         }
+
+
+
+
+        static void WriteThreeColumnLine(string arg1, string arg2, string arg3)
+        {
+            WriteVerticalBar();
+            Console.Write(arg1.PadRight(5));
+
+            WriteVerticalBar();
+            Console.Write(arg2.PadRight(25));
+
+            WriteVerticalBar();
+            Console.Write(arg3.PadRight(40));
+
+            WriteVerticalBar();
+            Console.WriteLine();
+        }
+
+        static void WriteThreeColumnTableHeader(string column3Title, bool rightAlignColumn3 = true)
+        {
+            WriteThreeColumnLine("**#**", "**Resource**", $"**{column3Title}**");
+
+            const string arg1 = "| ----:";
+            const string arg2 = "|------------------";
+            const string arg3A = "|--------------------------------";
+            const string arg3B = "|-------------------------------:";
+
+            Console.ForegroundColor = ConsoleColor.DarkGray;
+            Console.Write(arg1.PadRight(7));
+            Console.Write(arg2.PadRight(27));
+            Console.Write(rightAlignColumn3 ? arg3B.PadRight(42) : arg3A.PadRight(42));
+            Console.WriteLine("|");
+        }
+
+        static void WriteVerticalBar()
+        {
+            const string vert = "| ";
+
+            Console.ForegroundColor = ConsoleColor.DarkGray;
+            Console.Write(vert);
+            Console.ForegroundColor = ConsoleColor.White;
+        }
+
+        static void WriteNoHeaderTable(IOrderedEnumerable<ResourceBaseModel> items)
+        {
+            var num = items.Count();
+            var cols = FigureColumnCount(num);
+
+            var padWidth = items.Max(r => r.PrettyName.Length) + 2;
+
+            CreateNoHeaderTableHeader(cols, padWidth);
+
+
+            var itemStack = new Stack<ResourceBaseModel>(items);
+
+
+            while (itemStack.Count > 0)
+            {
+                for (var i = 0; i < cols; i++)
+                {
+                    WriteVerticalBar();
+
+                    var m = itemStack.Count > 0
+                                ? itemStack.Pop().PrettyName
+                                : string.Empty;
+
+                    Console.Write(m.PadRight(padWidth));
+
+                }
+
+                WriteVerticalBar();
+                Console.WriteLine();
+            }
+
+
+            void CreateNoHeaderTableHeader(int columns, int length)
+            {
+                Console.ForegroundColor = ConsoleColor.DarkGray;
+
+                // Create empty header row
+                for (var i = 0; i < columns; i++)
+                {
+                    Console.Write("|");
+                    Console.Write(new string(' ', length + 1));
+                }
+                Console.WriteLine("|");
+
+                for (var i = 0; i < columns; i++)
+                {
+                    Console.Write("|");
+                    Console.Write(new string('-', length + 1));
+                }
+                Console.WriteLine("|");
+
+            }
+
+
+        }
+
+        /// <summary>
+        ///     Determines the number of columns that should be created based on the
+        ///     number of items. Tries to find best-fit width.
+        /// </summary>
+        /// <param name="num">Number of items for the table</param>
+        /// <returns>The number of columns that the table should have</returns>
+        static int FigureColumnCount(int num)
+        {
+            if (num <= 5)
+                return num;
+
+            var altColumns = 7;
+            var altOddballs = num % 7;
+
+            for (var i = 7 - 1; i >= 3; i--)
+            {
+                var oddballs = num % i;
+                if (oddballs == 0)
+                    return i;
+
+                if (oddballs > altOddballs)
+                    altColumns = i;
+            }
+
+            return altColumns;
+        }
+
+
     }
 }

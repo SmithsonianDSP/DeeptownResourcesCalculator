@@ -20,6 +20,7 @@
 #endregion
 
 using System;
+using static DeepTownResourcesCalculator.ResourceBaseModel;
 
 namespace DeepTownResourcesCalculator
 {
@@ -91,7 +92,7 @@ namespace DeepTownResourcesCalculator
                 new ResourceBaseModel { Name = "Sapphire", CoinValue = 16, TimeToProduce = GetBaseRateFromMaxMinePercent(0.18) };
 
         static readonly ResourceBaseModel Amethyst =
-                new ResourceBaseModel { Name = "Amethyst", CoinValue = 18, TimeToProduce = GetBaseRateFromMaxMinePercent(0.37) };
+                new ResourceBaseModel { Name = "Amethyst", CoinValue = 18, TimeToProduce = BaseMineralWithMineRate };
 
         static readonly ResourceBaseModel Diamond =
                 new ResourceBaseModel { Name = "Diamond", CoinValue = 18, TimeToProduce = GetBaseRateFromMaxMinePercent(0.18) };
@@ -102,13 +103,13 @@ namespace DeepTownResourcesCalculator
         #region Chemical Mine Resources
 
         static readonly ResourceBaseModel Sulfur =
-                new ResourceBaseModel { Name = "Sulfur", CoinValue = 100, TimeToProduce = TimeSpan.FromMinutes(2) };
+                new ResourceBaseModel { Name = "Sulfur", CoinValue = 100, TimeToProduce = TimeSpan.FromMinutes(2), ProducedAt = ProductionSource.ChemicalMine };
 
         static readonly ResourceBaseModel Silicon =
-                new ResourceBaseModel { Name = "Silicon", CoinValue = 100, TimeToProduce = TimeSpan.FromMinutes(2) };
+                new ResourceBaseModel { Name = "Silicon", CoinValue = 100, TimeToProduce = TimeSpan.FromMinutes(2), ProducedAt = ProductionSource.ChemicalMine };
 
         static readonly ResourceBaseModel Sodium =
-                new ResourceBaseModel { Name = "Sodium", CoinValue = 100, TimeToProduce = TimeSpan.FromMinutes(2) };
+                new ResourceBaseModel { Name = "Sodium", CoinValue = 100, TimeToProduce = TimeSpan.FromMinutes(2), ProducedAt = ProductionSource.ChemicalMine };
 
         #endregion
 
@@ -117,26 +118,41 @@ namespace DeepTownResourcesCalculator
 
         // Using the best estimated on-line effective water collection rate (as it is not *always* raining...) of 2.5 RPM
         static readonly ResourceBaseModel Water =
-                new ResourceBaseModel { Name = "Water", CoinValue = 5, TimeToProduce = TimeSpan.FromMinutes(1D / 2.5D) };
+                new ResourceBaseModel { Name = "Water", CoinValue = 5, TimeToProduce = TimeSpan.FromMinutes(1D / 2.5D), ProducedAt = ProductionSource.WaterCollector };
 
         /// Assuming a Level 3 Oil Pump rate (0.3 RPM)
         static readonly ResourceBaseModel Oil =
-                new ResourceBaseModel { Name = "Oil", CoinValue = 21, TimeToProduce = TimeSpan.FromMinutes(1D / 0.3D) };
+                new ResourceBaseModel { Name = "Oil", CoinValue = 21, TimeToProduce = TimeSpan.FromMinutes(1D / 0.3D), ProducedAt = ProductionSource.OilPump };
 
         #endregion
 
         #region Greenhouse Seeds
 
         static readonly ResourceBaseModel TreeSeed =
-                new ResourceBaseModel { Name = "TreeSeed", CoinValue = 20, TimeToProduce = TimeSpan.Zero };
+                new ResourceBaseModel { Name = "TreeSeed", CoinValue = 20, TimeToProduce = TimeSpan.Zero, ProducedAt = ProductionSource.GreenHouse };
 
         static readonly ResourceBaseModel LianaSeed =
-                new ResourceBaseModel { Name = "LianaSeed", CoinValue = 1000, TimeToProduce = TimeSpan.Zero };
+                new ResourceBaseModel { Name = "LianaSeed", CoinValue = 1000, TimeToProduce = TimeSpan.Zero, ProducedAt = ProductionSource.GreenHouse };
 
         static readonly ResourceBaseModel GrapeSeed =
-                new ResourceBaseModel { Name = "TreeSeed", CoinValue = 1200, TimeToProduce = TimeSpan.Zero };
+                new ResourceBaseModel { Name = "TreeSeed", CoinValue = 1200, TimeToProduce = TimeSpan.Zero, ProducedAt = ProductionSource.GreenHouse };
 
         #endregion
+
+
+        #region New Base Materials From 2017-08-09 update
+
+        static readonly ResourceBaseModel TitaniumOre =
+                new ResourceBaseModel { Name = "TitaniumOre", CoinValue = 19, TimeToProduce = GetBaseRateFromMaxMinePercent(0.53) }; // TODO: Confirm... not yet at max level
+
+        static readonly ResourceBaseModel Alexandrite =
+                new ResourceBaseModel { Name = "Alexandrite", CoinValue = 19, TimeToProduce = GetBaseRateFromMaxMinePercent(0.30) }; // TODO: Confirm... not yet at max level
+
+        static readonly ResourceBaseModel UraniumOre =
+            new ResourceBaseModel { Name = "UraniumOre", CoinValue = 22, TimeToProduce = GetBaseRateFromMaxMinePercent(0.16) }; // TODO: Confirm... rough estimate
+
+        #endregion
+
 
         static readonly ResourceBaseModel CopperBar = new ResourceBaseModel
         {
@@ -146,7 +162,8 @@ namespace DeepTownResourcesCalculator
             Requires =
             {
                 [CopperOre] = 5
-            }
+            },
+            ProducedAt = ProductionSource.Smelter
         };
 
         static readonly ResourceBaseModel IronBar = new ResourceBaseModel
@@ -157,7 +174,8 @@ namespace DeepTownResourcesCalculator
             Requires =
             {
                 [IronOre] = 5
-            }
+            },
+            ProducedAt = ProductionSource.Smelter
         };
 
         static readonly ResourceBaseModel AluminumBar = new ResourceBaseModel
@@ -168,7 +186,8 @@ namespace DeepTownResourcesCalculator
             Requires =
             {
                 [AluminumOre] = 5
-            }
+            },
+            ProducedAt = ProductionSource.Smelter
         };
 
         static readonly ResourceBaseModel SilverBar = new ResourceBaseModel
@@ -179,7 +198,8 @@ namespace DeepTownResourcesCalculator
             Requires =
             {
                 [SilverOre] = 5
-            }
+            },
+            ProducedAt = ProductionSource.Smelter
         };
 
         static readonly ResourceBaseModel GoldBar = new ResourceBaseModel
@@ -190,7 +210,8 @@ namespace DeepTownResourcesCalculator
             Requires =
             {
                 [GoldOre] = 5
-            }
+            },
+            ProducedAt = ProductionSource.Smelter
         };
 
         static readonly ResourceBaseModel Glass = new ResourceBaseModel
@@ -201,7 +222,8 @@ namespace DeepTownResourcesCalculator
             Requires =
             {
                 [Silicon] = 2
-            }
+            },
+            ProducedAt = ProductionSource.Smelter
         };
 
         static readonly ResourceBaseModel PolishedAmber = new ResourceBaseModel
@@ -212,7 +234,8 @@ namespace DeepTownResourcesCalculator
             Requires =
             {
                 [Amber] = 5
-            }
+            },
+            ProducedAt = ProductionSource.Jeweler
         };
 
         static readonly ResourceBaseModel PolishedEmerald = new ResourceBaseModel
@@ -223,7 +246,8 @@ namespace DeepTownResourcesCalculator
             Requires =
             {
                 [Emerald] = 5
-            }
+            },
+            ProducedAt = ProductionSource.Jeweler
         };
 
         static readonly ResourceBaseModel AmberBracelet = new ResourceBaseModel
@@ -235,7 +259,8 @@ namespace DeepTownResourcesCalculator
             {
                 [SilverBar] = 1,
                 [PolishedAmber] = 1
-            }
+            },
+            ProducedAt = ProductionSource.Jeweler
         };
 
         static readonly ResourceBaseModel EmeraldRing = new ResourceBaseModel
@@ -247,7 +272,8 @@ namespace DeepTownResourcesCalculator
             {
                 [GoldBar] = 1,
                 [PolishedEmerald] = 1
-            }
+            },
+            ProducedAt = ProductionSource.Jeweler
         };
 
         static readonly ResourceBaseModel PolishedTopaz = new ResourceBaseModel
@@ -258,7 +284,8 @@ namespace DeepTownResourcesCalculator
             Requires =
             {
                 [Topaz] = 5
-            }
+            },
+            ProducedAt = ProductionSource.Jeweler
         };
 
         static readonly ResourceBaseModel PolishedRuby = new ResourceBaseModel
@@ -269,7 +296,8 @@ namespace DeepTownResourcesCalculator
             Requires =
             {
                 [Ruby] = 5
-            }
+            },
+            ProducedAt = ProductionSource.Jeweler
         };
 
         static readonly ResourceBaseModel PolishedDiamond = new ResourceBaseModel
@@ -280,7 +308,8 @@ namespace DeepTownResourcesCalculator
             Requires =
             {
                 [Diamond] = 5
-            }
+            },
+            ProducedAt = ProductionSource.Jeweler
         };
 
         static readonly ResourceBaseModel PolishedSapphire = new ResourceBaseModel
@@ -291,7 +320,8 @@ namespace DeepTownResourcesCalculator
             Requires =
             {
                 [Sapphire] = 5
-            }
+            },
+            ProducedAt = ProductionSource.Jeweler
         };
 
         static readonly ResourceBaseModel PolishedAmethyst = new ResourceBaseModel
@@ -302,7 +332,8 @@ namespace DeepTownResourcesCalculator
             Requires =
             {
                 [Amethyst] = 5
-            }
+            },
+            ProducedAt = ProductionSource.Jeweler
         };
 
         // Produced in 10-unit quantities
@@ -315,7 +346,8 @@ namespace DeepTownResourcesCalculator
             {
                 [Water] = 10D / 10D,
                 [TreeSeed] = 1D / 10D
-            }
+            },
+            ProducedAt = ProductionSource.GreenHouse
         };
 
         static readonly ResourceBaseModel Liana = new ResourceBaseModel
@@ -327,7 +359,8 @@ namespace DeepTownResourcesCalculator
             {
                 [Water] = 20,
                 [LianaSeed] = 1
-            }
+            },
+            ProducedAt = ProductionSource.GreenHouse
         };
 
         // Produced in 2-unit quantities
@@ -340,7 +373,8 @@ namespace DeepTownResourcesCalculator
             {
                 [Water] = 15D / 2D,
                 [GrapeSeed] = 1D / 2D
-            }
+            },
+            ProducedAt = ProductionSource.GreenHouse
         };
 
         // Produced in 2-unit quantities
@@ -352,7 +386,8 @@ namespace DeepTownResourcesCalculator
             Requires =
             {
                 [Liana] = 1D / 2D
-            }
+            },
+            ProducedAt = ProductionSource.Chemistry
         };
 
         static readonly ResourceBaseModel LabFlask = new ResourceBaseModel
@@ -363,7 +398,8 @@ namespace DeepTownResourcesCalculator
             Requires =
             {
                 [Glass] = 1
-            }
+            },
+            ProducedAt = ProductionSource.Crafting
         };
 
         static readonly ResourceBaseModel CleanWater = new ResourceBaseModel
@@ -375,7 +411,8 @@ namespace DeepTownResourcesCalculator
             {
                 [Water] = 1,
                 [LabFlask] = 1
-            }
+            },
+            ProducedAt = ProductionSource.Chemistry
         };
 
         // Produced in 2-unit quantities along with 1 oxygen
@@ -388,7 +425,8 @@ namespace DeepTownResourcesCalculator
             Requires =
             {
                 [CleanWater] = 1 / 2D
-            }
+            },
+            ProducedAt = ProductionSource.Chemistry
         };
 
         // Note: the actual values for this might be a bit off due to it being produced simultaneously with Hydrogen...
@@ -400,7 +438,8 @@ namespace DeepTownResourcesCalculator
             Requires =
             {
                 [CleanWater] = 1
-            }
+            },
+            ProducedAt = ProductionSource.Chemistry
         };
 
         static readonly ResourceBaseModel SulfuricAcid = new ResourceBaseModel
@@ -412,7 +451,8 @@ namespace DeepTownResourcesCalculator
             {
                 [CleanWater] = 1,
                 [Sulfur] = 2
-            }
+            },
+            ProducedAt = ProductionSource.Chemistry
         };
 
         static readonly ResourceBaseModel RefinedOil = new ResourceBaseModel
@@ -425,7 +465,8 @@ namespace DeepTownResourcesCalculator
                 [Oil] = 10,
                 [Hydrogen] = 10,
                 [LabFlask] = 1
-            }
+            },
+            ProducedAt = ProductionSource.Chemistry
         };
 
         static readonly ResourceBaseModel Graphite = new ResourceBaseModel
@@ -436,7 +477,8 @@ namespace DeepTownResourcesCalculator
             Requires =
             {
                 [Coal] = 5
-            }
+            },
+            ProducedAt = ProductionSource.Crafting
         };
 
         static readonly ResourceBaseModel SteelBar = new ResourceBaseModel
@@ -448,7 +490,8 @@ namespace DeepTownResourcesCalculator
             {
                 [IronBar] = 1,
                 [Graphite] = 1
-            }
+            },
+            ProducedAt = ProductionSource.Smelter
         };
 
         static readonly ResourceBaseModel SteelPlate = new ResourceBaseModel
@@ -459,7 +502,8 @@ namespace DeepTownResourcesCalculator
             Requires =
             {
                 [SteelBar] = 5
-            }
+            },
+            ProducedAt = ProductionSource.Smelter
         };
 
         // produced in 10 unit quantities
@@ -471,7 +515,8 @@ namespace DeepTownResourcesCalculator
             Requires =
             {
                 [CopperBar] = 1D / 10
-            }
+            },
+            ProducedAt = ProductionSource.Crafting
         };
 
         // Produced in 5 unit quantities
@@ -483,7 +528,8 @@ namespace DeepTownResourcesCalculator
             Requires =
             {
                 [CopperBar] = 1D / 5D
-            }
+            },
+            ProducedAt = ProductionSource.Crafting
         };
 
         static readonly ResourceBaseModel Battery = new ResourceBaseModel
@@ -496,7 +542,8 @@ namespace DeepTownResourcesCalculator
                 [Amber] = 1,
                 [IronBar] = 1,
                 [CopperBar] = 5
-            }
+            },
+            ProducedAt = ProductionSource.Crafting
         };
 
         static readonly ResourceBaseModel Circuit = new ResourceBaseModel
@@ -509,7 +556,8 @@ namespace DeepTownResourcesCalculator
                 [IronBar] = 10,
                 [Graphite] = 50,
                 [CopperBar] = 20
-            }
+            },
+            ProducedAt = ProductionSource.Crafting
         };
 
         static readonly ResourceBaseModel Lamp = new ResourceBaseModel
@@ -522,7 +570,8 @@ namespace DeepTownResourcesCalculator
                 [CopperBar] = 5,
                 [CopperWire] = 10,
                 [Graphite] = 20
-            }
+            },
+            ProducedAt = ProductionSource.Crafting
         };
 
         static readonly ResourceBaseModel AmberCharger = new ResourceBaseModel
@@ -533,19 +582,21 @@ namespace DeepTownResourcesCalculator
             Requires =
             {
                 [Amber] = 1
-            }
+            },
+            ProducedAt = ProductionSource.Crafting
         };
 
-        // Produced in 2-unit quantities
+        // Produced in ~~2~~ 1-unit quantities
         static readonly ResourceBaseModel AluminumBottle = new ResourceBaseModel
         {
             Name = "AluminumBottle",
             CoinValue = 55,
-            TimeToProduce = TimeSpan.FromSeconds(30D / 2D),
+            TimeToProduce = TimeSpan.FromSeconds(15),
             Requires =
             {
-                [AluminumBar] = 1D / 2D
-            }
+                [AluminumBar] = 1
+            },
+            ProducedAt = ProductionSource.Crafting
         };
 
         static readonly ResourceBaseModel Ethanol = new ResourceBaseModel
@@ -557,7 +608,8 @@ namespace DeepTownResourcesCalculator
             {
                 [AluminumBottle] = 1,
                 [Grapes] = 2
-            }
+            },
+            ProducedAt = ProductionSource.Chemistry
         };
 
         static readonly ResourceBaseModel AmberInsulation = new ResourceBaseModel
@@ -569,7 +621,8 @@ namespace DeepTownResourcesCalculator
             {
                 [Amber] = 10,
                 [AluminumBottle] = 1
-            }
+            },
+            ProducedAt = ProductionSource.Crafting
         };
 
         static readonly ResourceBaseModel InsulatedWire = new ResourceBaseModel
@@ -581,7 +634,8 @@ namespace DeepTownResourcesCalculator
             {
                 [CopperWire] = 1,
                 [AmberInsulation] = 1
-            }
+            },
+            ProducedAt = ProductionSource.Crafting
         };
 
         // Produced in 5-unit quantities
@@ -595,20 +649,22 @@ namespace DeepTownResourcesCalculator
                 [PolishedEmerald] = 1D / 5D,
                 [InsulatedWire] = 1D / 5D,
                 [Lamp] = 1D / 5D
-            }
+            },
+            ProducedAt = ProductionSource.Crafting
         };
 
         static readonly ResourceBaseModel Plastic = new ResourceBaseModel
         {
             Name = "Plastic",
-            CoinValue = 220000,
-            TimeToProduce = TimeSpan.FromMinutes(30),
+            CoinValue = 40000,
+            TimeToProduce = TimeSpan.FromMinutes(10),
             Requires =
             {
                 [RefinedOil] = 1,
-                [Coal] = 1000,
-                [GreenLaser] = 200
-            }
+                [Coal] = 50,
+                [GreenLaser] = 1
+            },
+            ProducedAt = ProductionSource.Chemistry
         };
 
         static readonly ResourceBaseModel DiamondCutter = new ResourceBaseModel
@@ -620,7 +676,8 @@ namespace DeepTownResourcesCalculator
             {
                 [SteelPlate] = 1,
                 [PolishedDiamond] = 5
-            }
+            },
+            ProducedAt = ProductionSource.Crafting
         };
 
         static readonly ResourceBaseModel Motherboard = new ResourceBaseModel
@@ -633,7 +690,8 @@ namespace DeepTownResourcesCalculator
                 [Circuit] = 3,
                 [GoldBar] = 1,
                 [Silicon] = 3
-            }
+            },
+            ProducedAt = ProductionSource.Crafting
         };
 
         static readonly ResourceBaseModel SolidPropellant = new ResourceBaseModel
@@ -645,7 +703,8 @@ namespace DeepTownResourcesCalculator
             {
                 [Rubber] = 3,
                 [AluminumBar] = 10
-            }
+            },
+            ProducedAt = ProductionSource.Crafting
         };
 
         static readonly ResourceBaseModel Accumulator = new ResourceBaseModel
@@ -657,7 +716,8 @@ namespace DeepTownResourcesCalculator
             {
                 [Sodium] = 20,
                 [Sulfur] = 20
-            }
+            },
+            ProducedAt = ProductionSource.Crafting
         };
 
         static readonly ResourceBaseModel SolarPanel = new ResourceBaseModel
@@ -670,7 +730,8 @@ namespace DeepTownResourcesCalculator
                 [Rubber] = 1,
                 [Silicon] = 10,
                 [Glass] = 50
-            }
+            },
+            ProducedAt = ProductionSource.Crafting
         };
 
         // Note: recording "charcoal" (smelted) separately from mined coal, mainly for comparison's sake
@@ -683,7 +744,153 @@ namespace DeepTownResourcesCalculator
             Requires =
             {
                 [Wood] = 1D / 50D
-            }
+            },
+            ProducedAt = ProductionSource.Smelter
+        };
+
+
+
+
+
+
+
+        static readonly ResourceBaseModel PolishedAlexandrite = new ResourceBaseModel
+        {
+            Name = "PolishedAlexandrite",
+            CoinValue = 270,
+            TimeToProduce = TimeSpan.FromMinutes(1),
+            Requires =
+            {
+                [Alexandrite] = 5
+            },
+            ProducedAt = ProductionSource.Jeweler
+        };
+
+        // Produced in 50-unit quantites
+        static readonly ResourceBaseModel Titanium = new ResourceBaseModel
+        {
+            Name = "Titanium",
+            CoinValue = 260,
+            TimeToProduce = TimeSpan.FromMinutes(0.333D / 50D),
+            Requires =
+            {
+                [TitaniumOre] = 100D / 50D,
+                [SulfuricAcid] = 1D / 50D
+            },
+            ProducedAt = ProductionSource.Chemistry
+        };
+
+
+        static readonly ResourceBaseModel TitaniumBar = new ResourceBaseModel
+        {
+            Name = "TitaniumBar",
+            CoinValue = 3000,
+            TimeToProduce = TimeSpan.FromMinutes(1),
+            Requires =
+            {
+                [Titanium] = 5
+            },
+            ProducedAt = ProductionSource.Smelter
+        };
+
+
+        static readonly ResourceBaseModel Haircomb = new ResourceBaseModel
+        {
+            Name = "Haircomb",
+            CoinValue = 6000,
+            TimeToProduce = TimeSpan.FromMinutes(1),
+            Requires =
+            {
+                [PolishedAlexandrite] = 10,
+                [PolishedAmethyst] = 15,
+                [SilverBar] = 1
+            },
+            ProducedAt = ProductionSource.Jeweler
+        };
+
+
+        static readonly ResourceBaseModel MayaCalendar = new ResourceBaseModel
+        {
+            Name = "MayaCalendar",
+            CoinValue = 6000,
+            TimeToProduce = TimeSpan.FromMinutes(1),
+            Requires =
+            {
+                [SilverBar] = 2,
+                [GoldBar] = 10
+            },
+            ProducedAt = ProductionSource.Jeweler
+        };
+
+
+        static readonly ResourceBaseModel UraniumRod = new ResourceBaseModel
+        {
+            Name = "UraniumRod",
+            CoinValue = 17000,
+            TimeToProduce = TimeSpan.FromMinutes(10),
+            Requires =
+            {
+                [UraniumOre] = 100,
+                [Sodium] = 50
+            },
+            ProducedAt = ProductionSource.UraniumEnrichment
+        };
+
+
+        static readonly ResourceBaseModel Gear = new ResourceBaseModel
+        {
+            Name = "Gear",
+            CoinValue = 18500,
+            TimeToProduce = TimeSpan.FromMinutes(1.333D),
+            Requires =
+            {
+                [DiamondCutter] = 1,
+                [TitaniumBar] = 1
+            },
+            ProducedAt = ProductionSource.Crafting
+        };
+
+
+        static readonly ResourceBaseModel DiethylEther = new ResourceBaseModel
+        {
+            Name = "DiethylEther",
+            CoinValue = 17000,
+            TimeToProduce = TimeSpan.FromMinutes(1),
+            Requires =
+            {
+                [SulfuricAcid] = 1,
+                [Ethanol] = 1
+            },
+            ProducedAt = ProductionSource.Chemistry
+        };
+
+        // Produced in 20 unit quantities
+        static readonly ResourceBaseModel Gunpowder = new ResourceBaseModel
+        {
+            Name = "Gunpowder",
+            CoinValue = 2500,
+            TimeToProduce = TimeSpan.FromMinutes(2D / 20D),
+            Requires =
+            {
+                [DiethylEther] = 1D / 20D,
+                [SulfuricAcid] = 2D / 20D,
+                [Wood] = 2D / 20D
+            },
+            ProducedAt = ProductionSource.Chemistry
+        };
+
+
+        static readonly ResourceBaseModel Bomb = new ResourceBaseModel
+        {
+            Name = "Bomb",
+            CoinValue = 55500,
+            TimeToProduce = TimeSpan.FromMinutes(3),
+            Requires =
+            {
+                [Gunpowder] = 10,
+                [SteelBar] = 5
+            },
+            ProducedAt = ProductionSource.Crafting
         };
 
 
@@ -699,7 +906,17 @@ namespace DeepTownResourcesCalculator
             Wood, Liana, Grapes,
             Rubber, CleanWater, Hydrogen, Oxygen, SulfuricAcid, Ethanol, RefinedOil, Plastic,
             Graphite, CopperNails, CopperWire, Battery, Circuit, Lamp, LabFlask, AmberCharger, AluminumBottle, AmberInsulation, InsulatedWire,
-            GreenLaser, DiamondCutter, Motherboard, SolidPropellant, Accumulator, SolarPanel
+            GreenLaser, DiamondCutter, Motherboard, SolidPropellant, Accumulator, SolarPanel,
+
+#region Expansion Materials from 2017-08-09
+
+            TitaniumOre, Titanium, TitaniumBar,
+            UraniumOre, UraniumRod,
+            DiethylEther, Gunpowder,
+            Gear, Bomb,
+            Alexandrite, PolishedAlexandrite, Haircomb, MayaCalendar
+
+#endregion
         };
 
     }

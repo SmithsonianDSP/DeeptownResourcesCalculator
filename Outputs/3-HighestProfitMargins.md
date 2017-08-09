@@ -16,68 +16,80 @@
    &nbsp;  
 
 
-| #  	| Resource          	| Profit Margin 	|
-|----	|-------------------	|---------------	|
-| 1  	| Plastic           	| 206,185       	|
-| 2  	| Solar panel       	| 57,450        	|
-| 3  	| Solid propellant  	| 25,100        	|
-| 4  	| Refined oil       	| 15,065        	|
-| 5  	| Motherboard       	| 14,850        	|
-| 6  	| Accumulator       	| 5,000         	|
-| 7  	| Diamond cutter    	| 4,450         	|
-| 8  	| Rubber            	| 3,450         	|
-| 9  	| Sulfuric acid     	| 3,095         	|
-| 10 	| Ethanol           	| 2,913         	|
-| 11 	| Steel plate       	| 1,700         	|
-| 12 	| Circuit           	| 1,470         	|
-| 13 	| Clean water       	| 995           	|
-| 14 	| Grapes            	| 863           	|
-| 15 	| Insulated wire    	| 696           	|
-| 16 	| Oxygen            	| 695           	|
-| 17 	| Lab flask         	| 600           	|
-| 18 	| Liana             	| 600           	|
-| 19 	| Lamp              	| 590           	|
-| 20 	| Green laser       	| 343           	|
-| 21 	| Emerald ring      	| 340           	|
-| 22 	| Hydrogen          	| 298           	|
-| 23 	| Glass             	| 250           	|
-| 24 	| Amber bracelet    	| 225           	|
-| 25 	| Polished diamond  	| 210           	|
-| 26 	| Gold bar          	| 200           	|
-| 27 	| Wood              	| 186           	|
-| 28 	| Polished ruby     	| 175           	|
-| 29 	| Polished amethyst 	| 170           	|
-| 30 	| Silver bar        	| 165           	|
-| 31 	| Steel bar         	| 160           	|
-| 32 	| Polished sapphire 	| 150           	|
-| 33 	| Battery           	| 131           	|
-| 34 	| Polished topaz    	| 130           	|
-| 35 	| Polished emerald  	| 100           	|
-| 36 	| Amber insulation  	| 73            	|
-| 37 	| Polished amber    	| 50            	|
-| 38 	| Aluminum bottle   	| 43            	|
-| 39 	| Aluminum bar      	| 25            	|
-| 40 	| Iron bar          	| 25            	|
-| 41 	| Copper bar        	| 15            	|
-| 42 	| Graphite          	| 10            	|
-| 43 	| Copper nails      	| 6             	|
-| 44 	| Copper wire       	| 3             	|
+| **#**| **Resource**             | **Profit Margin**                       |
+| ----:|------------------        |-------------------------------:         |
+| 1    | Solar panel              | 57,450                                  |
+| 2    | Bomb                     | 54,136                                  |
+| 3    | Plastic                  | 38,456                                  |
+| 4    | Solid propellant         | 25,100                                  |
+| 5    | Gear                     | 17,720                                  |
+| 6    | Diethyl ether            | 15,295                                  |
+| 7    | Refined oil              | 15,065                                  |
+| 8    | Motherboard              | 14,850                                  |
+| 9    | Uranium rod              | 9,800                                   |
+| 10   | Maya calendar            | 5,430                                   |
+| 11   | Accumulator              | 5,000                                   |
+| 12   | Diamond cutter           | 4,450                                   |
+| 13   | Haircomb                 | 3,665                                   |
+| 14   | Rubber                   | 3,450                                   |
+| 15   | Sulfuric acid            | 3,095                                   |
+| 16   | Ethanol                  | 2,900                                   |
+| 17   | Titanium bar             | 2,770                                   |
+| 18   | Gunpowder                | 2,374                                   |
+| 19   | Steel plate              | 1,700                                   |
+| 20   | Circuit                  | 1,470                                   |
+| 21   | Clean water              | 995                                     |
+| 22   | Grapes                   | 863                                     |
+| 23   | Oxygen                   | 695                                     |
+| 24   | Insulated wire           | 683                                     |
+| 25   | Lab flask                | 600                                     |
+| 26   | Liana                    | 600                                     |
+| 27   | Lamp                     | 590                                     |
+| 28   | Green laser              | 341                                     |
+| 29   | Emerald ring             | 340                                     |
+| 30   | Hydrogen                 | 298                                     |
+| 31   | Glass                    | 250                                     |
+| 32   | Amber bracelet           | 225                                     |
+| 33   | Titanium                 | 214                                     |
+| 34   | Polished diamond         | 210                                     |
+| 35   | Gold bar                 | 200                                     |
+| 36   | Wood                     | 186                                     |
+| 37   | Polished alexandrite     | 175                                     |
+| 38   | Polished ruby            | 175                                     |
+| 39   | Polished amethyst        | 170                                     |
+| 40   | Silver bar               | 165                                     |
+| 41   | Steel bar                | 160                                     |
+| 42   | Polished sapphire        | 150                                     |
+| 43   | Battery                  | 131                                     |
+| 44   | Polished topaz           | 130                                     |
+| 45   | Polished emerald         | 100                                     |
+| 46   | Amber insulation         | 60                                      |
+| 47   | Polished amber           | 50                                      |
+| 48   | Aluminum bottle          | 30                                      |
+| 49   | Aluminum bar             | 25                                      |
+| 50   | Iron bar                 | 25                                      |
+| 51   | Copper bar               | 15                                      |
+| 52   | Graphite                 | 10                                      |
+| 53   | Copper nails             | 6                                       |
+| 54   | Copper wire              | 3                                       |
 
 - - -
 
 ### **Zero Cost (all profit)**:
 
-|             |            |            |              |              |
-|-------------|------------|------------|--------------|--------------|
-| Silicon     | Sodium     | Sulfur     | Oil          | Amethyst     |
-| Diamond     | Sapphire   | Ruby       | Topaz        | Emerald      |
-| Coal        | Amber      | Copper Ore | Iron Ore     | Aluminum Ore | 
-| Silver Ore  | Gold Ore   |            |              | Water        |
+|              |              |              |              |
+|--------------|--------------|--------------|--------------|
+| Coal         | Copper Ore   | Iron Ore     | Amber        |
+| Water        | Aluminum Ore | Silver Ore   | Gold Ore     |
+| Emerald      | Platinum     | Topaz        | Ruby         |
+| Sapphire     | Diamond      | Amethyst     | Titanium Ore |
+| Alexandrite  | Oil          | Uranium Ore  | Sulfur       |
+| Sodium       | Silicon      |              |              | 
 
 - - - 
 
 ### **Zero (or negative) Values**:
 
-| | |
-|---|---|
-| Amber Charger | Charcoal |
+|               |               |
+|---------------|---------------|
+| Charcoal      | Amber Charger |

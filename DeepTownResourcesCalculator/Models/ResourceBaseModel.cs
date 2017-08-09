@@ -22,12 +22,18 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Humanizer;
 
 namespace DeepTownResourcesCalculator
 {
     public sealed class ResourceBaseModel
     {
         public string Name { get; set; }
+
+        /// <summary>
+        ///     The "Humanized" version of the resource name. Ideal for human-friendly reading.
+        /// </summary>
+        public string PrettyName => Name.Humanize(LetterCasing.Title);
 
         /// <summary>
         ///     A list of the different materials and resources required to produce ONE UNIT of this material.
@@ -152,5 +158,29 @@ namespace DeepTownResourcesCalculator
 
 
         #endregion
+
+        /// <summary>
+        ///     Where this resource is produced (e.g., iron ore = <see cref="ProductionSource.MineralMine"/>, iron bar = <see cref="ProductionSource.Smelter"/>)
+        /// </summary>
+        public ProductionSource ProducedAt { get; set; } = ProductionSource.MineralMine;
+
+        /// <summary>
+        ///     An enumeration of the possible locations where a material is produced
+        /// </summary>
+        public enum ProductionSource
+        {
+            MineralMine,
+            ChemicalMine,
+            OilPump,
+            Smelter,
+            Crafting,
+            Chemistry,
+            Jeweler,
+            GreenHouse,
+            WaterCollector,
+            UraniumEnrichment
+        }
+
+
     }
 }

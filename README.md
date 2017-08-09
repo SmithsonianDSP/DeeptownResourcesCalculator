@@ -12,6 +12,10 @@ in the amount of time and resources required to create them? (Spoiler: it's rubb
 This kind of data crunching wasn't really well-suited for doing in a spreadsheet, but I knew I could do it
 much easier in a simple console program. And this is the result. 
 
+
+>**Note:** Data and outputs have been updated as of 2017-08-09 to reflect changes and new resources/materials that
+>have been added in the new Nuclear Expansion update.
+
 - - -
 
 ## Results & Data
