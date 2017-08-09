@@ -2,3 +2,17 @@
 ---
 
 @import "{{ site.theme }}";
+
+p sup sub {
+    visibility: collapse;
+    margin: 0px;
+}
+
+#main_content {
+    padding-top: 0px;
+}
+.inner {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+}
