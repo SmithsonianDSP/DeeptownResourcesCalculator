@@ -28,3 +28,10 @@ body {
 h1,h2,h3,h4,h5,h6 {
     font-family: 'Segoe UI Semibold', 'Lucida Grande', 'Calibri', Roboto, Helvetica, Arial, sans-serif;
 }
+
+ul li:before {
+    content: unset
+}
+ul li {
+    list-style: lower-alpha;
+}
