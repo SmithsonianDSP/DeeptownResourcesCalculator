@@ -28,11 +28,11 @@ value is that it is now *compartive*: you can see how much total time each resou
 
 See the footnotes, below, for information on the data and calculation methods.
 
-1. [Resources by Time To Produce Required Subcomponents](https://smithsoniandsp.github.io/DeeptownResourcesCalculator/Outputs/1-LongestTimeToProduceSubcomponents) <sup>[[**1**](#1)][[**2**](#2)][[**3**](#3)])</sup>
+1. [Resources by Time To Produce Required Subcomponents](https://smithsoniandsp.github.io/DeeptownResourcesCalculator/Outputs/1-LongestTimeToProduceSubcomponents) <sup>**[[1](#1)][[2](#2)][[3](#3)]**</sup>
 
 2. [Resources by Total Value of Subcomponts](https://smithsoniandsp.github.io/DeeptownResourcesCalculator/Outputs/2-MostExpensiveSubcomponts)
 
-3. [Resources by Profit Margins](https://smithsoniandsp.github.io/DeeptownResourcesCalculator/Outputs/3-HighestProfitMargins) <sup>[[**4**](#4)]</sup>
+3. [Resources by Profit Margins](https://smithsoniandsp.github.io/DeeptownResourcesCalculator/Outputs/3-HighestProfitMargins) <sup>**[[**4**](#4)]**</sup>
 
 4. [Resources by Time-To-Value Ratio](https://smithsoniandsp.github.io/DeeptownResourcesCalculator/Outputs/4-TimeToValueRatio) <sup>**[[5](#5)]**</sup>
 
