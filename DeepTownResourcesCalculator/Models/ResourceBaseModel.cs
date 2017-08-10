@@ -1,4 +1,6 @@
 ﻿#region license header
+
+
 //  DeepTownResourcesCalculator - Statistical Analysis of Game Resources
 //      Code Copyright (C) 2017    -    SmithsonianDSP
 // 
@@ -17,16 +19,20 @@
 // 
 //     You should have received a copy of the GNU General Public License
 //     along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+
 #endregion
+
 
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using Humanizer;
 
 namespace DeepTownResourcesCalculator
 {
-    public sealed class ResourceBaseModel
+    public sealed partial class ResourceBaseModel
     {
         public string Name { get; set; }
 
@@ -63,19 +69,44 @@ namespace DeepTownResourcesCalculator
         /// </remarks>
         public TimeSpan TimeToProduce { get; set; } = TimeSpan.FromSeconds(0);
 
+        /// <summary>
+        ///     Where this resource is produced (e.g., iron ore = <see cref="ProductionSource.MineralMine" />, iron bar =
+        ///     <see cref="ProductionSource.Smelter" />)
+        /// </summary>
+        public ProductionSource ProducedAt { get; set; } = ProductionSource.MineralMine;
+
+        /// <summary>
+        ///     If the <paramref name="key" /> exists in the provided <paramref name="dict" />, it will add the
+        ///     <paramref name="value" /> to the <paramref name="dict" />'s current value.
+        ///     If it does not exist, it will create a new entry in the <paramref name="dict" /> for the supplied
+        ///     <paramref name="key" /> with the provided <paramref name="value" />
+        /// </summary>
+        /// <param name="dict">The Dictionary to add or increment the value for</param>
+        /// <param name="key">The specified Key to check or create</param>
+        /// <param name="value">The value to add to the dictionary</param>
+        static void IncrementOrAddToDictionary(IDictionary<ProductionSource, double> dict, ProductionSource key, double value)
+        {
+            if (dict.ContainsKey(key))
+                dict[key] = dict[key] + value;
+            else
+                dict.Add(key, value);
+        }
+
 
         #region Calculated Fields and Properties
         // These are all things that are dependant upon the values set above
 
-        #region Calculation Cache Backing
 
+        #region Calculation Cache Backing
         // We cache the results of this calculation because they won't change and so we aren't doing it multiple times whenever
         // we want to look at this value.
-        double _cachedSumOfSubcomponentValues;
 
+        double _cachedSumOfSubcomponentValues;
         bool _isSumOfSubcomponentValuesCached;
 
+
         #endregion
+
 
         /// <summary>
         ///     This is the sum value of all of a material's required subcomponents. If a material does NOT have any
@@ -119,7 +150,9 @@ namespace DeepTownResourcesCalculator
 
         bool _isTimeToProduceSubcomponentsCached;
 
+
         #endregion
+
 
         /// <summary>
         ///     The length of time it takes to craft all required sub-components (and their sub-components) EXCLUDING its own
@@ -157,30 +190,93 @@ namespace DeepTownResourcesCalculator
         public double ProfitToTimeRequiredRatio => CoinValue / TotalTimeToProduce.TotalMinutes;
 
 
+        #region  Calculation Cache Backing
+        // We cache the results of this calculation because they won't change and so we aren't doing it multiple times whenever
+        // we want to look at this value.
+
+        IDictionary<ProductionSource, double> _cachedSubcomponentProductionTimeByType;
+        bool _isSubcomponentProductionTimeByTypeCached;
+
+
         #endregion
 
-        /// <summary>
-        ///     Where this resource is produced (e.g., iron ore = <see cref="ProductionSource.MineralMine"/>, iron bar = <see cref="ProductionSource.Smelter"/>)
-        /// </summary>
-        public ProductionSource ProducedAt { get; set; } = ProductionSource.MineralMine;
 
         /// <summary>
-        ///     An enumeration of the possible locations where a material is produced
+        ///     The total time required, by production source, for this resource's subcomponents.
         /// </summary>
-        public enum ProductionSource
+        /// <remarks>
+        ///     If it does not have any subcomponents, this value will its own <see cref="ProducedAt" /> and
+        ///     <see cref="TimeToProduce" />.
+        ///     This largely exists solely to complement the <see cref="TotalProductionTimeByType" /> calculation.
+        /// </remarks>
+        IDictionary<ProductionSource, double> SubcomponentProductionTimeByType
         {
-            MineralMine,
-            ChemicalMine,
-            OilPump,
-            Smelter,
-            Crafting,
-            Chemistry,
-            Jeweler,
-            GreenHouse,
-            WaterCollector,
-            UraniumEnrichment
+            get
+            {
+                if (!_isSubcomponentProductionTimeByTypeCached)
+                {
+                    var subs = new Dictionary<ProductionSource, double>();
+
+                    if (Requires.Any())
+                    {
+                        // We need to iterate through all of the required items...
+                        foreach (var s in Requires)
+                        {
+                            // ...and then iterate through each of the component's different product type times...
+                            foreach (var t in s.Key.TotalProductionTimeByType)
+
+                                // ...and add the total production time req'd for each production time, multiplied by the quantity required.
+                                IncrementOrAddToDictionary(subs, t.Key, t.Value.TotalMinutes * s.Value);
+                        }
+                    }
+                    else
+                    {
+                        IncrementOrAddToDictionary(subs, ProducedAt, TimeToProduce.TotalMinutes);
+                    }
+
+                    _cachedSubcomponentProductionTimeByType = subs;
+                    _isSubcomponentProductionTimeByTypeCached = true;
+                }
+
+                return _cachedSubcomponentProductionTimeByType;
+            }
         }
 
 
+        #region  Calculation Cache Backing
+        // We cache the results of this calculation because they won't change and so we aren't doing it multiple times whenever
+        // we want to look at this value.
+
+        IDictionary<ProductionSource, TimeSpan> _cachedTotalProductionTimeByType;
+        bool _isTotalProductionTimeByTypeCached;
+
+
+        #endregion
+
+
+        /// <summary>
+        ///     The total time required, by each production source, to produce one of the given resource.
+        /// </summary>
+        public IDictionary<ProductionSource, TimeSpan> TotalProductionTimeByType
+        {
+            get
+            {
+                if (!_isTotalProductionTimeByTypeCached)
+                {
+                    var subs = SubcomponentProductionTimeByType;
+
+                    if (Requires.Any())
+                        IncrementOrAddToDictionary(subs, ProducedAt, TimeToProduce.TotalMinutes);
+
+                    _cachedTotalProductionTimeByType = new ReadOnlyDictionary<ProductionSource, TimeSpan>(subs.ToDictionary(t => t.Key, t => TimeSpan.FromMinutes(t.Value)));
+                    _isTotalProductionTimeByTypeCached = true;
+                }
+
+                return _cachedTotalProductionTimeByType;
+            }
+        }
+
+
+        #endregion
     }
 }

@@ -143,10 +143,10 @@ namespace DeepTownResourcesCalculator
         #region New Base Materials From 2017-08-09 update
 
         static readonly ResourceBaseModel TitaniumOre =
-                new ResourceBaseModel { Name = "TitaniumOre", CoinValue = 19, TimeToProduce = GetBaseRateFromMaxMinePercent(0.53) }; // TODO: Confirm... not yet at max level
+                new ResourceBaseModel { Name = "TitaniumOre", CoinValue = 19, TimeToProduce = GetBaseRateFromMaxMinePercent(0.56) };
 
         static readonly ResourceBaseModel Alexandrite =
-                new ResourceBaseModel { Name = "Alexandrite", CoinValue = 19, TimeToProduce = GetBaseRateFromMaxMinePercent(0.30) }; // TODO: Confirm... not yet at max level
+                new ResourceBaseModel { Name = "Alexandrite", CoinValue = 19, TimeToProduce = GetBaseRateFromMaxMinePercent(0.30) };
 
         static readonly ResourceBaseModel UraniumOre =
             new ResourceBaseModel { Name = "UraniumOre", CoinValue = 22, TimeToProduce = GetBaseRateFromMaxMinePercent(0.16) }; // TODO: Confirm... rough estimate
