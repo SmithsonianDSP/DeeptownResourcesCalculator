@@ -16,3 +16,15 @@ p sup sub {
     max-width: 800px;
     margin: 0 auto;
 }
+pre,code {
+	font-family: Consolas, Monaco, "Bitstream Vera Sans Mono", "Lucida Console", Terminal, monospace;
+}
+
+body {
+    font-family: 'Myriad Pro', 'Segoe UI', Calibri, Roboto, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased
+}
+
+h1,h2,h3,h4,h5,h6 {
+    font-family: 'Segoe UI Semibold', 'Lucida Grande', 'Calibri', Roboto, Helvetica, Arial, sans-serif;
+}
